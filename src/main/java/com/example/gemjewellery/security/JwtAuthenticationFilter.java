@@ -59,5 +59,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         } catch (ExpiredJwtException ex) {
             handleJwtException(response, 401, "Token expired");
+        } catch (SignatureException ex) {
+            handleJwtException(response, 401, "Invalid token signature");
+
+    }
+
 
 }
