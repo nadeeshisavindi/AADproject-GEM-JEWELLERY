@@ -74,4 +74,6 @@ public class GemstoneController {
     @PostMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
    }
 
+    @GetMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
+   }
 }
