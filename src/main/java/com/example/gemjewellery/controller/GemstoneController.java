@@ -72,7 +72,9 @@ public class GemstoneController {
     }
 
     @GetMapping(value = "/certificates", produces = MediaType.APPLICATION_JSON_VALUE)
-   }
+    public CommonResponse getCertificates() {
+        return new CommonResponse(0, certificateRepository.findAll(), "Certificates");
+    }
 
 
     @PostMapping(value = "/valuation", produces = MediaType.APPLICATION_JSON_VALUE)
