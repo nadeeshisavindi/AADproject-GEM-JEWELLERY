@@ -1,7 +1,7 @@
 package com.example.gemjewellery.config;
 
 import com.example.gemjewellery.entity.Customer;
-
+import com.example.gemjewellery.entity.Role;
 import com.example.gemjewellery.entity.User;
 
 import com.example.gemjewellery.repository.CustomerRepository;
