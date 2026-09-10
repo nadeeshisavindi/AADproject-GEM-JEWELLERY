@@ -143,6 +143,17 @@
 <script>
     const API = "";
 
+    function authHeaders(){ return { "Authorization": "Bearer " + localStorage.getItem("JWT") }; }
+
+      $(function() {
+          if (localStorage.getItem("JWT")) {
+              window.location.href = "index.html";
+          }
+      }
+
+
+
+
 </script>
 </body>
 </html>
