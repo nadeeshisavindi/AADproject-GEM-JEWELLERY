@@ -307,9 +307,14 @@
     });
 
     /* ---------------- DASHBOARD ---------------- */
-
-</script>
-
+    function loadDashboard(){
+        $('#dashboardWelcome').text("Logged in as "+getUsername()+" — role: "+getRole());
+        $.ajax({url: API+"/v1/jewellery-items", type:"GET", success:r=>$('#statItems').text(r.body.length)});
+        if(getRole()==='ADMIN' || getRole()==='STAFF'){
+            $.ajax({url: API+"/v1/gemstones", type:"GET", headers:authHeaders(), success:r=>$('#statGemstones').text(r.body.length)});
+            $.ajax({url: API+"/v1/customers", type:"GET", headers:authHeaders(), success:r=>$('#statCustomers').text(r.body.length)});
+            $.ajax({url: API+"/v1/orders", type:"GET", headers:authHeaders(), success:r=>$('#statOrders').text(r.body.length)});
+        }
 
 
 </script>
