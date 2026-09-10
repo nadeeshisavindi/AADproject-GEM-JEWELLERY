@@ -68,4 +68,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
     }
 
+    private void handleJwtException(HttpServletResponse response, int code, String message) throws IOException {
+       }
 }
