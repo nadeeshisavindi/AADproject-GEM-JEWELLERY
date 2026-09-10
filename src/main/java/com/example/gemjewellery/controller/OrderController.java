@@ -24,4 +24,10 @@ public class OrderController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getAll()
+
+
+    @GetMapping(value = "/customer/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse getForCustomer(@PathVariable Long customerId) {
+
+
 }
