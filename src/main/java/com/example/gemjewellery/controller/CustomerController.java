@@ -27,7 +27,11 @@ public class CustomerController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getAll(@RequestParam(required = false) String search) {
-
+        if (search != null && !search.isBlank()) {
+            return new CommonResponse(0, customerRepository.findByFullNameContainingIgnoreCase(search), "Customers");
+        }
+        return new CommonResponse(0, customerRepository.findAll(), "Customers");
+    }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getOne(@PathVariable Long id)
@@ -37,5 +41,7 @@ public class CustomerController {
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse delete(@PathVariable Long id) {
-
+        customerRepository.deleteById(id);
+        return new CommonResponse(0, "Customer deleted");
+    }
 }
