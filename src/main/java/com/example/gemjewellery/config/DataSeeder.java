@@ -47,6 +47,22 @@ public class DataSeeder implements CommandLineRunner {
 
     private User seedUser(String username, String rawPassword, UserRole roleName) {
 
+        if (userRepository.existsByUsername(username)) {
+            return userRepository.findByUsername(username).orElse(null);
+        }
+
+        Role role = roleRepository.findAll().stream()
+                .filter(r -> r.getRoleName() == roleName)
+                .findFirst().orElse(null);
+        if (role == null) return null;
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(rawPassword));
+        user.setRole(role);
+        user.setEnabled(true);
+        User saved = userRepository.save(user);
+        log.info("Seeded {} account -> username: {} / password: {}", roleName, username, rawPassword);
+        return saved;
     }
 }
-

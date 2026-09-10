@@ -17,7 +17,7 @@ public class CustomerController {
 
     private final CustomerRepository customerRepository;
 
-    // lets a logged-in customer find their own customerId (needed to place/view their own orders)
+
     @GetMapping(value = "/me", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getMyProfile(Authentication authentication) {
         Customer customer = customerRepository.findByUser_Username(authentication.getName())
