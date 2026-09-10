@@ -31,9 +31,10 @@ public class JewelleryItemController {
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse update(@RequestBody JewelleryItem item) {
+        }
+          }
 
-    }
-
-
-
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse delete(@PathVariable Long id) {
+       }
 }
