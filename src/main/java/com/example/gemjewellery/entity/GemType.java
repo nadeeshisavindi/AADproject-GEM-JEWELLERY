@@ -17,5 +17,5 @@ public class GemType {
     private Long gemTypeId;
 
     @Column(unique = true, nullable = false)
-    private String typeName; // e.g. Ruby, Sapphire, Emerald
+    private String typeName;
 }

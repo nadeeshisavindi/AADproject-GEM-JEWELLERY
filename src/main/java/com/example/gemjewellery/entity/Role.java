@@ -1,6 +1,6 @@
 package com.example.gemjewellery.entity;
 
-import com.example.gemjewellery.enumiration.UserRole;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,5 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(unique = true, nullable = false)
-    private UserRole roleName;
+
 }

@@ -18,6 +18,9 @@ public class GemInventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long inventoryId;
 
+    @OneToOne
+    @JoinColumn(name = "gemstone_id", unique = true, nullable = false)
+    private Gemstone gemstone;
 
     private int quantity;
     private String location;

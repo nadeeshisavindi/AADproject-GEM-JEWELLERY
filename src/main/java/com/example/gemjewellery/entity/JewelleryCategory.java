@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 public class JewelleryCategory {
 
     @Id
-    @GeneratedValue(stratey = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
 
     @Column(unique = true, nullable = false)
-    private String categoryName; // e.g. Ring, Necklace, Earring, Bracelet
-}
+    private String categoryName; }

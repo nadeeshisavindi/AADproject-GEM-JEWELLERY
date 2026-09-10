@@ -1,6 +1,6 @@
 package com.example.gemjewellery.entity;
 
-import com.example.gemjewellery.enumiration.OrderStatus;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "orders") // "order" is a reserved SQL keyword
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -20,6 +20,10 @@ public class Order {
     private Long orderId;
 
     @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
+
+    private LocalDateTime orderDate = LocalDateTime.now();
 
 
 }

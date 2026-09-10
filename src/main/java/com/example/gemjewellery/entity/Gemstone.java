@@ -23,6 +23,9 @@ public class Gemstone {
     private String shape;
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "gem_type_id", nullable = false)
+    private GemType gemType;
 
     @ManyToOne
     @JoinColumn(name = "gem_color_id", nullable = false)

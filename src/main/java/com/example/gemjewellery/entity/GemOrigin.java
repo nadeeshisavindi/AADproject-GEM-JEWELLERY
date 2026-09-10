@@ -15,5 +15,7 @@ public class GemOrigin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gemOriginId;
-  private String originName; // e.g. Sri Lanka, Myanmar, Colombia
+
+    @Column(unique = true, nullable = false)
+    private String originName;
 }

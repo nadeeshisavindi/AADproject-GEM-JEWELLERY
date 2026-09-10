@@ -29,8 +29,7 @@ public class JewelleryItem {
     @JoinColumn(name = "category_id", nullable = false)
     private JewelleryCategory category;
 
-    // A jewellery item may be built around a specific gemstone (nullable, e.g. plain metal items)
-    @ManyToOne
+     @ManyToOne
     @JoinColumn(name = "gemstone_id")
     private Gemstone gemstone;
 }

@@ -26,6 +26,7 @@ public class Customer {
     private String phone;
     private String address;
 
+
     @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
