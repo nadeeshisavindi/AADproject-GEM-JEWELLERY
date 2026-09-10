@@ -86,4 +86,6 @@ public class ReferenceDataController {
     @PostMapping(value = "/v1/suppliers", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse addSupplier(@RequestBody Supplier supplier) {
     }
+    @PutMapping(value = "/v1/suppliers", produces = MediaType.APPLICATION_JSON_VALUE)
+   }
 }
