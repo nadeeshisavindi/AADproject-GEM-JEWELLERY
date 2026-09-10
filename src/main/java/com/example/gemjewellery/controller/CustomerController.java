@@ -33,7 +33,5 @@ public class CustomerController {
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse delete(@PathVariable Long id) {
-        customerRepository.deleteById(id);
-        return new CommonResponse(0, "Customer deleted");
     }
 }

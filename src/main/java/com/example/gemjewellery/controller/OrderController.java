@@ -30,4 +30,6 @@ public class OrderController {
     public CommonResponse getForCustomer(@PathVariable Long customerId) {
 
 
+    @PatchMapping(value = "/{orderId}/status", produces = MediaType.APPLICATION_JSON_VALUE)
+
 }
