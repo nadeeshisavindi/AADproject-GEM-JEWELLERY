@@ -27,6 +27,6 @@ public class DataSeeder implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
 
 
-
+    }
 }
 
