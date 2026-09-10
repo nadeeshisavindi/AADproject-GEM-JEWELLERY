@@ -62,4 +62,6 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    public boolean isTokenExpired(String token) {
+
     }
