@@ -63,8 +63,13 @@ public class GemstoneController {
     @GetMapping(value = "/certificates", produces = MediaType.APPLICATION_JSON_VALUE)
    }
 
-    // ---- Valuation (many per gemstone, latest = current market value) ----
+
     @PostMapping(value = "/valuation", produces = MediaType.APPLICATION_JSON_VALUE)
     }
+
+    @GetMapping(value = "/valuations", produces = MediaType.APPLICATION_JSON_VALUE)
+    }
+
+
 
 }
