@@ -76,7 +76,7 @@ public class ReferenceDataController {
         return new CommonResponse(0, "Gem origin deleted");
     }
 
-    // ---------- Jewellery Categories ----------
+
     @GetMapping(value = "/v1/categories", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getCategories() {
         return new CommonResponse(0, categoryRepository.findAll(), "Jewellery categories");

@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
 
     private final CustomerRepository customerRepository;
-
-
     @GetMapping(value = "/me", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getMyProfile(Authentication authentication) {
         Customer customer = customerRepository.findByUser_Username(authentication.getName())

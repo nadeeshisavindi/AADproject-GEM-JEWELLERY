@@ -26,7 +26,6 @@ public class OrderController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getAll() {
-
         return new CommonResponse(0, orderService.getAllOrders(), "All orders");
     }
 
@@ -36,12 +35,9 @@ public class OrderController {
         return new CommonResponse(0, orderService.getOrdersForCustomer(customerId), "Customer orders");
     }
 
-
     @PatchMapping(value = "/{orderId}/status", produces = MediaType.APPLICATION_JSON_VALUE)
-
     public CommonResponse updateStatus(@PathVariable Long orderId, @RequestParam String status) {
         return new CommonResponse(0, orderService.updateStatus(orderId, status), "Order status updated");
     }
 }
-
 
