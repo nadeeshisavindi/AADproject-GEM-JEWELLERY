@@ -145,7 +145,8 @@
 
     function authHeaders(){ return { "Authorization": "Bearer " + localStorage.getItem("JWT") }; }
 
-      $(function(){
+    /* If already logged in, don't show the login page again - go straight to the app */
+    $(function(){
         if (localStorage.getItem("JWT")) {
             window.location.href = "index.html";
         }
@@ -189,6 +190,39 @@
         });
     }
 
+    function registerCustomer(){
+        const obj = JSON.stringify({
+            username: $('#regUsername').val().trim(),
+            password: $('#regPassword').val(),
+            fullName: $('#regFullName').val(),
+            email: $('#regEmail').val(),
+            phone: $('#regPhone').val(),
+            address: $('#regAddress').val()
+        });
+        $.ajax({
+            url: API+"/v1/auth/register-customer", type:"POST", contentType:"application/json", data: obj,
+            success: function(res){
+                $('#regMsg').removeClass(res.status===0?'err':'ok').addClass(res.status===0?'ok':'err').text(res.message);
+            },
+            error: function(){ $('#regMsg').removeClass('ok').addClass('err').text("Registration failed"); }
+        });
+    }
+
+    function registerStaff(){
+        const obj = JSON.stringify({
+            username: $('#staffUsername').val().trim(),
+            password: $('#staffPassword').val(),
+            roleName: $('#staffRole').val()
+        });
+        $.ajax({
+            url: API+"/v1/auth/register-staff", type:"POST", contentType:"application/json", data: obj,
+            headers: authHeaders(),
+            success: function(res){
+                $('#staffMsg').removeClass(res.status===0?'err':'ok').addClass(res.status===0?'ok':'err').text(res.message);
+            },
+            error: function(){ $('#staffMsg').removeClass('ok').addClass('err').text("Failed (are you logged in as ADMIN?)"); }
+        });
+    }
 </script>
 </body>
 </html>

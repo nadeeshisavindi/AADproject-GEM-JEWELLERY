@@ -1,6 +1,7 @@
 package com.example.gemjewellery.entity;
 
 
+import com.example.gemjewellery.enumiration.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,12 @@ public class Order {
     private Customer customer;
 
     private LocalDateTime orderDate = LocalDateTime.now();
+
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status = OrderStatus.PENDING;
+
+    private double totalAmount;
 
 
 }

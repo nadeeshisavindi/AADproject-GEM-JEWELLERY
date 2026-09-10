@@ -3,7 +3,6 @@ package com.example.gemjewellery.config;
 import com.example.gemjewellery.entity.Customer;
 import com.example.gemjewellery.entity.Role;
 import com.example.gemjewellery.entity.User;
-
 import com.example.gemjewellery.enumiration.UserRole;
 import com.example.gemjewellery.repository.CustomerRepository;
 import com.example.gemjewellery.repository.RoleRepository;
@@ -14,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
 
 
 @Component
@@ -27,12 +27,23 @@ public class DataSeeder implements CommandLineRunner {
     private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Override
+    public void run(String... args) {
+        for (UserRole roleName : UserRole.values()) {
+            boolean exists = roleRepository.findAll().stream().anyMatch(r -> r.getRoleName() == roleName);
+            if (!exists) {
+                Role role = new Role();
+                role.setRoleName(roleName);
+                roleRepository.save(role);
+                log.info("Seeded role: {}", roleName);
+            }
+        }
 
         seedUser("admin", "admin123", UserRole.ADMIN);
         seedUser("staff1", "staff123", UserRole.STAFF);
         User customerUser = seedUser("customer1", "customer123", UserRole.CUSTOMER);
 
-         if (customerUser != null && customerRepository.findByUser_Username("customer1").isEmpty()) {
+      if (customerUser != null && customerRepository.findByUser_Username("customer1").isEmpty()) {
             Customer customer = new Customer();
             customer.setUser(customerUser);
             customer.setFullName("Demo Customer");
@@ -43,10 +54,17 @@ public class DataSeeder implements CommandLineRunner {
             log.info("Seeded demo customer profile for customer1");
         }
 
+        log.info("=====================================================");
+        log.info(" Demo logins:");
+        log.info("http://localhost:8080/login.html");
+        log.info("   ADMIN    -> admin     / admin123");
+        log.info("   STAFF    -> staff1    / staff123");
+        log.info("   CUSTOMER -> customer1 / customer123");
+        log.info("=====================================================");
     }
 
-    private User seedUser(String username, String rawPassword, UserRole roleName) {
 
+    private User seedUser(String username, String rawPassword, UserRole roleName) {
         if (userRepository.existsByUsername(username)) {
             return userRepository.findByUsername(username).orElse(null);
         }
@@ -66,3 +84,4 @@ public class DataSeeder implements CommandLineRunner {
         return saved;
     }
 }
+
