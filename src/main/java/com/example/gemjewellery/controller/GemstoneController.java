@@ -49,7 +49,7 @@ public class GemstoneController {
         }
         return new CommonResponse(0, gemstoneRepository.save(gemstone), "Gemstone saved");
     }
-        }
+
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse update(@RequestBody Gemstone gemstone) {
@@ -84,7 +84,8 @@ public class GemstoneController {
     }
 
 
-@GetMapping(value = "/valuations", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @GetMapping(value = "/valuations", produces = MediaType.APPLICATION_JSON_VALUE)
 public CommonResponse getValuations() {
     return new CommonResponse(0, valuationRepository.findAll(), "Valuations");
 }
@@ -98,7 +99,8 @@ public CommonResponse saveInventory(@RequestBody GemInventory inventory) {
 }
 
 
-    @GetMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
+
+@GetMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getInventory() {
         List<GemInventory> list = inventoryRepository.findAll();
         return new CommonResponse(0, list, "Gem inventory");
