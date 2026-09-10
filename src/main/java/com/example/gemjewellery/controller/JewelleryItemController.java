@@ -19,7 +19,8 @@ public class JewelleryItemController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getAll() {
-         }
+        return new CommonResponse(0, jewelleryItemRepository.findAll(), "Jewellery items");
+    }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getOne(@PathVariable Long id) {
