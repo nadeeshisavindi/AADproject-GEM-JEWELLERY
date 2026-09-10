@@ -32,4 +32,9 @@ public class ReferenceDataController {
     public CommonResponse getGemTypes() {
         return new CommonResponse(0, gemTypeRepository.findAll(), "Gem types");
     }
+
+    @PostMapping(value = "/v1/gem-types", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse addGemType(@RequestBody GemType gemType) {
+      }
+
 }
