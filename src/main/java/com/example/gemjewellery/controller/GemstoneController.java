@@ -96,9 +96,11 @@ public CommonResponse saveInventory(@RequestBody GemInventory inventory) {
     inventory.setLastUpdated(LocalDateTime.now());
     return new CommonResponse(0, inventoryRepository.save(inventory), "Inventory saved");
 }
-   }
+
 
     @GetMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getInventory() {
-      }
+        List<GemInventory> list = inventoryRepository.findAll();
+        return new CommonResponse(0, list, "Gem inventory");
+    }
 }
