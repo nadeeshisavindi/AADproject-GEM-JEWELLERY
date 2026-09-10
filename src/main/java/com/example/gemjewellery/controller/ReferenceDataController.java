@@ -37,4 +37,13 @@ public class ReferenceDataController {
     public CommonResponse addGemType(@RequestBody GemType gemType) {
       }
 
+    @DeleteMapping(value = "/v1/gem-types/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse deleteGemType(@PathVariable Long id) {
+
+    }
+
+
+    @GetMapping(value = "/v1/gem-colors", produces = MediaType.APPLICATION_JSON_VALUE)
+   }
+
 }
