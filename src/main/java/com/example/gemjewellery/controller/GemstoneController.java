@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
+/**
+ * Gemstones plus their three "detail" tables: certificate, valuation and
+ * inventory. Kept in one controller since they are all part of the same
+ * screen in the frontend (view/edit a gemstone).
+ */
 @RestController
 @RequestMapping("/v1/gemstones")
 @CrossOrigin
@@ -36,7 +40,11 @@ public class GemstoneController {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getOne(@PathVariable Long id) {
-       }
+        Gemstone gemstone = gemstoneRepository.findById(id)
+                .orElseThrow(() -> new AppException(404, "Gemstone not found"));
+        return new CommonResponse(0, gemstone, "Gemstone");
+    }
+
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse create(@RequestBody Gemstone gemstone) {
@@ -59,17 +67,18 @@ public class GemstoneController {
     @GetMapping(value = "/certificates", produces = MediaType.APPLICATION_JSON_VALUE)
    }
 
-
+    // ---- Valuation (many per gemstone, latest = current market value) ----
     @PostMapping(value = "/valuation", produces = MediaType.APPLICATION_JSON_VALUE)
     }
 
     @GetMapping(value = "/valuations", produces = MediaType.APPLICATION_JSON_VALUE)
     }
 
-
+    // ---- Inventory (1-1 with gemstone, stock on hand) ----
     @PostMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
    }
 
     @GetMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
-   }
+    public CommonResponse getInventory() {
+      }
 }
