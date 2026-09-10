@@ -24,6 +24,9 @@ public class JwtUtil {
         claims.put("role", role);
 
         return Jwts.builder()
+                .setClaims(claims)
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
