@@ -28,4 +28,8 @@ public class ReferenceDataController {
     private final SupplierRepository supplierRepository;
 
 
+    @GetMapping(value = "/v1/gem-types", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse getGemTypes() {
+        return new CommonResponse(0, gemTypeRepository.findAll(), "Gem types");
+    }
 }
