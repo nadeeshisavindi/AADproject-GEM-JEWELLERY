@@ -163,7 +163,11 @@
         const obj = JSON.stringify({
             username: $('#loginUsername').val().trim(),
             password: $('#loginPassword').val()
-        });}
+        });
+        $.ajax({
+            url: API+"/v1/auth/login", type:"POST", contentType:"application/json", data: obj,
+
+    }
 </script>
 </body>
 </html>
