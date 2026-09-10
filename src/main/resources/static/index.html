@@ -314,8 +314,13 @@
             $.ajax({url: API+"/v1/gemstones", type:"GET", headers:authHeaders(), success:r=>$('#statGemstones').text(r.body.length)});
             $.ajax({url: API+"/v1/customers", type:"GET", headers:authHeaders(), success:r=>$('#statCustomers').text(r.body.length)});
             $.ajax({url: API+"/v1/orders", type:"GET", headers:authHeaders(), success:r=>$('#statOrders').text(r.body.length)});
+        } else {
+            $('#statGemstones').text('—');
+            $('#statCustomers').text('—');
+            $.ajax({url: API+"/v1/orders/customer/"+getCustomerId(), type:"GET", headers:authHeaders(),
+                success:r=>$('#statOrders').text(r.body ? r.body.length : 0)});
         }
-
+    }
 
 </script>
 </body>
