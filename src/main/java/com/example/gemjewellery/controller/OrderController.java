@@ -19,6 +19,9 @@ public class OrderController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse placeOrder(@RequestBody OrderRequestDTO request, Authentication authentication) {
-       }
+    }
 
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse getAll()
 }
