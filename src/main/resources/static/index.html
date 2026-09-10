@@ -322,6 +322,40 @@
         }
     }
 
+    /* ---------------- CATALOGUE ---------------- */
+    function loadCatalogue(){
+        populateSelect('/v1/categories', 'jiCategory', 'categoryId', 'categoryName');
+        populateSelect('/v1/gemstones', 'jiGemstone', 'gemstoneId', 'gemCode', true);
+
+        $.ajax({
+            url: API+"/v1/jewellery-items", type:"GET",
+            success: function(res){
+                let html = "";
+                res.body.forEach(it => {
+                    html += `<div class="item-card">
+                    <h4>${it.itemName} <span class="badge">${it.itemCode}</span></h4>
+                    <p>Category: ${it.category ? it.category.categoryName : '-'}</p>
+                    <p>Metal: ${it.metalType} | Weight: ${it.weight}g</p>
+                    <p>Price: ${it.price} | Stock: ${it.stockQuantity}</p>
+                    <div id="cat-actions-${it.itemId}"></div>
+                </div>`;
+                });
+                $('#catalogueGrid').html(html);
+
+                const role = getRole();
+                res.body.forEach(it => {
+                    let actions = "";
+                    if(role === 'ADMIN' || role === 'STAFF'){
+                        actions = `<button class="btn small" onclick='editJewelleryItem(${JSON.stringify(it)})'>Edit</button>
+                               <button class="btn small" onclick="deleteJewelleryItem(${it.itemId})">Delete</button>`;
+                    }
+                    $('#cat-actions-'+it.itemId).html(actions);
+                });
+            }
+        });
+    }
+
+
 </script>
 </body>
 </html>
