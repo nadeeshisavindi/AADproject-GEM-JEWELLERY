@@ -63,6 +63,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             handleJwtException(response, 401, "Invalid token signature");
         } catch (MalformedJwtException ex) {
             handleJwtException(response, 401, "Invalid token format");
+        } catch (Exception ex) {
+            handleJwtException(response, 401, "Authentication failed");
         }
     }
 
