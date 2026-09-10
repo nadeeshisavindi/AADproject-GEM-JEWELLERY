@@ -25,4 +25,7 @@ public class JewelleryItemController {
     public CommonResponse getOne(@PathVariable Long id) {
         }
 
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse create(@RequestBody JewelleryItem item) {
+     }
 }
