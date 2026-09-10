@@ -88,4 +88,7 @@ public class ReferenceDataController {
     }
     @PutMapping(value = "/v1/suppliers", produces = MediaType.APPLICATION_JSON_VALUE)
    }
+    @DeleteMapping(value = "/v1/suppliers/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse deleteSupplier(@PathVariable Long id) {
+     }
 }
