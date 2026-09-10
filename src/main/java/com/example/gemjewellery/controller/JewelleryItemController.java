@@ -33,12 +33,17 @@ public class JewelleryItemController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse create(@RequestBody JewelleryItem item) {
-     }
+        return new CommonResponse(0, jewelleryItemRepository.save(item), "Jewellery item saved");
+    }
+
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse update(@RequestBody JewelleryItem item) {
+        if (!jewelleryItemRepository.existsById(item.getItemId())) {
+            throw new AppException(404, "Jewellery item not found");
         }
-          }
+        return new CommonResponse(0, jewelleryItemRepository.save(item), "Jewellery item updated");
+    }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse delete(@PathVariable Long id) {
