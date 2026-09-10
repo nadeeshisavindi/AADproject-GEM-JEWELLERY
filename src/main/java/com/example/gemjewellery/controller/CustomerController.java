@@ -34,10 +34,19 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CommonResponse getOne(@PathVariable Long id)
+    public CommonResponse getOne(@PathVariable Long id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new AppException(404, "Customer not found"));
+        return new CommonResponse(0, customer, "Customer");
+    }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public CommonResponse update(@RequestBody Customer customer)
+    public CommonResponse update(@RequestBody Customer customer) {
+        if (!customerRepository.existsById(customer.getCustomerId())) {
+            throw new AppException(404, "Customer not found");
+        }
+        return new CommonResponse(0, customerRepository.save(customer), "Customer updated");
+    }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse delete(@PathVariable Long id) {
