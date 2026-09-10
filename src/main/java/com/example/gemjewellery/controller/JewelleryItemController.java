@@ -28,4 +28,11 @@ public class JewelleryItemController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse create(@RequestBody JewelleryItem item) {
      }
+
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse update(@RequestBody JewelleryItem item) {
+
+
+
+
 }
