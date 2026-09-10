@@ -19,6 +19,10 @@ public class CustomerController {
 
     // lets a logged-in customer find their own customerId (needed to place/view their own orders)
     @GetMapping(value = "/me", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse getMyProfile(Authentication authentication) {
+        Customer customer = customerRepository.findByUser_Username(authentication.getName())
+                .orElseThrow(() -> new AppException(404, "No customer profile linked to this account"));
+        return new CommonResponse(0, customer, "My profile");
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,5 +37,5 @@ public class CustomerController {
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse delete(@PathVariable Long id) {
-    }
+
 }
