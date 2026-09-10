@@ -67,5 +67,6 @@ public class JwtUtil {
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
+        String username = extractUsername(token);
 
     }
