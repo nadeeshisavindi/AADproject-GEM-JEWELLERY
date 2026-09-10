@@ -57,4 +57,7 @@ public class JwtUtil {
                 .getBody();
     }
 
+    private Key getSignKey() {
+        byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
+
     }
