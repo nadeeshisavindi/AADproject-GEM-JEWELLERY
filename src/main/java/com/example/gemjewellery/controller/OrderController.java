@@ -39,4 +39,9 @@ public class OrderController {
 
     @PatchMapping(value = "/{orderId}/status", produces = MediaType.APPLICATION_JSON_VALUE)
 
+    public CommonResponse updateStatus(@PathVariable Long orderId, @RequestParam String status) {
+        return new CommonResponse(0, orderService.updateStatus(orderId, status), "Order status updated");
+    }
 }
+
+
