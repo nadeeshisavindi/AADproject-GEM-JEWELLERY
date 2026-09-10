@@ -85,10 +85,17 @@ public class GemstoneController {
 
 
 @GetMapping(value = "/valuations", produces = MediaType.APPLICATION_JSON_VALUE)
-    }
+public CommonResponse getValuations() {
+    return new CommonResponse(0, valuationRepository.findAll(), "Valuations");
+}
 
 
-    @PostMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
+
+@PostMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
+public CommonResponse saveInventory(@RequestBody GemInventory inventory) {
+    inventory.setLastUpdated(LocalDateTime.now());
+    return new CommonResponse(0, inventoryRepository.save(inventory), "Inventory saved");
+}
    }
 
     @GetMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
