@@ -270,6 +270,44 @@
         window.location.href = "login.html";
     }
 
+    $('nav button[data-tab]').on('click', function(){
+        showTab($(this).data('tab'));
+    });
+
+    function showTab(tab){
+        $('.panel').removeClass('active');
+        $('#'+tab).addClass('active');
+        $('nav button[data-tab]').removeClass('active');
+        $('nav button[data-tab="'+tab+'"]').addClass('active');
+
+        if(tab === 'tab-dashboard') loadDashboard();
+        if(tab === 'tab-catalogue') loadCatalogue();
+        if(tab === 'tab-gemstones') loadGemstones();
+        if(tab === 'tab-reference') loadReferenceData();
+        if(tab === 'tab-customers') loadCustomers();
+        if(tab === 'tab-orders') loadOrders();
+    }
+
+    function applyRoleVisibility(){
+        const role = getRole();
+        $('#whoami').text(getUsername()+" ("+role+")");
+
+        const staffTabs = ['tab-gemstones','tab-reference','tab-customers'];
+        staffTabs.forEach(t => {
+            $('nav button[data-tab="'+t+'"]').toggle(role === 'ADMIN' || role === 'STAFF');
+        });
+
+        $('#staffOnly-catalogueForm').toggle(role === 'ADMIN' || role === 'STAFF');
+        $('#customerOrderBox').toggle(role === 'CUSTOMER');
+    }
+
+    $('#logoutBtn').on('click', function(){
+        localStorage.clear();
+        window.location.href = "login.html";
+    });
+
+    /* ---------------- DASHBOARD ---------------- */
+
 </script>
 
 
