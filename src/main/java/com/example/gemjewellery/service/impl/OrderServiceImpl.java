@@ -96,7 +96,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order updateStatus(Long orderId, String status) {
-
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new AppException(404, "Order not found"));
+        try {
+            order.setStatus(OrderStatus.valueOf(status.toUpperCase()));
+        } catch (Exception ex) {
+            throw new AppException(400, "Invalid status. Use PENDING, CONFIRMED, DELIVERED or CANCELLED");
+        }
         return orderRepository.save(order);
     }
 }
