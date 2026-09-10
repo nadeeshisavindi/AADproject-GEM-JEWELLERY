@@ -78,9 +78,13 @@ public class GemstoneController {
 
 
     @PostMapping(value = "/valuation", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    public CommonResponse saveValuation(@RequestBody GemValuation valuation) {
+        return new CommonResponse(0, valuationRepository.save(valuation), "Valuation saved");
     }
 
-    @GetMapping(value = "/valuations", produces = MediaType.APPLICATION_JSON_VALUE)
+
+@GetMapping(value = "/valuations", produces = MediaType.APPLICATION_JSON_VALUE)
     }
 
 
