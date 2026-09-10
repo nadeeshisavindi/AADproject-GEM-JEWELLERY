@@ -79,4 +79,9 @@ public class ReferenceDataController {
          }
 
 
+    @GetMapping(value = "/v1/suppliers", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse getSuppliers() {
+     }
+
+    @PostMappin
 }
