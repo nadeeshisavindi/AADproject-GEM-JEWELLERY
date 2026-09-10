@@ -67,6 +67,8 @@ public class GemstoneController {
 
 
     @PostMapping(value = "/certificate", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse saveCertificate(@RequestBody GemCertificate certificate) {
+        return new CommonResponse(0, certificateRepository.save(certificate), "Certificate saved");
     }
 
     @GetMapping(value = "/certificates", produces = MediaType.APPLICATION_JSON_VALUE)
