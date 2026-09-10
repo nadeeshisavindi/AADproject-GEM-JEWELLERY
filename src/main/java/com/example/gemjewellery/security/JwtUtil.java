@@ -1,11 +1,16 @@
 package com.example.gemjewellery.security;
 
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import lombok.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,5 +37,17 @@ public class JwtUtil {
                 .compact();
     }
 
+    private Claims extractAllClaims(String token) {
 
+    }
+
+    private Key getSignKey() {
+
+    }
+
+    public boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    }
 }
