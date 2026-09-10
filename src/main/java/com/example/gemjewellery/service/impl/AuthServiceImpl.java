@@ -6,9 +6,12 @@ import com.example.gemjewellery.dto.UserDataDTO;
 import com.example.gemjewellery.entity.Customer;
 import com.example.gemjewellery.entity.Role;
 import com.example.gemjewellery.entity.User;
+import com.example.gemjewellery.enumiration.UserRole;
+import com.example.gemjewellery.exception.AppException;
 import com.example.gemjewellery.repository.CustomerRepository;
 import com.example.gemjewellery.repository.RoleRepository;
 import com.example.gemjewellery.repository.UserRepository;
+import com.example.gemjewellery.security.JwtUtil;
 import com.example.gemjewellery.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -30,11 +33,25 @@ public class AuthServiceImpl implements AuthService {
     private final CustomerRepository customerRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-
+    private final JwtUtil jwtUtil;
 
     @Override
     public UserDataDTO login(AuthDTO authDTO) {
-      }
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authDTO.getUsername(), authDTO.getPassword()));
+        } catch (BadCredentialsException ex) {
+            throw new AppException(401, "Invalid username or password");
+        }
+
+        User user = userRepository.findByUsername(authDTO.getUsername())
+                .orElseThrow(() -> new AppException(404, "User not found"));
+
+        String token = jwtUtil.generateToken(user.getUsername(), user.getRole().getRoleName().name());
+        log.info("User '{}' logged in with role {}", user.getUsername(), user.getRole().getRoleName());
+
+        return new UserDataDTO(user.getUserId(), user.getUsername(), user.getRole().getRoleName().name(), token);
+    }
 
     @Override
     public void registerCustomer(RegisterDTO dto) {
