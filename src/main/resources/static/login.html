@@ -3,226 +3,1554 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Gem &amp; Jewellery Management System</title>
+
+    <title>GEM & JEWELLERY | Login</title>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
-        :root{
-            --navy:#0d1220; --navy-2:#141b2e; --card:#161d30; --border:#2a3352;
-            --gold:#d4af37; --gold-soft:#e8c96a; --text:#eef1f8; --muted:#8b93ab;
-            --accent-blue:#7c9cff; --danger:#e5677a; --ok:#6fd38f;
-        }
-        *{box-sizing:border-box;}
 
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
+        *{
+            box-sizing:border-box;
+        }
 
-            background-image: url('images/Gemini_Generated_Image_5ldbwd5ldbwd5ldb.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+        body{
+            margin:0;
+            font-family:Arial, Helvetica, sans-serif;
+            background:#ffffff;
+            color:#111111;
+        }
 
-            color: var(--text);
-            min-height: 100vh;
-        }
-        h2{margin-top:0;color:var(--gold-soft);font-size:18px;font-weight:600;}
-        label{display:block;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin:10px 0 4px;}
-        input, select{
-            width:100%; padding:10px 12px; border-radius:7px; border:1px solid var(--border);
-            background:var(--navy-2); color:var(--text); font-size:14px;
-        }
-        input:focus, select:focus{outline:none;border-color:var(--gold);}
-        .row{display:flex;gap:14px;flex-wrap:wrap;}
-        .row > div{flex:1;min-width:180px;}
-        button.btn{
-            background:linear-gradient(180deg, var(--gold-soft), var(--gold));
-            color:#241a04; border:none; padding:11px 18px; border-radius:7px;
-            cursor:pointer; margin-top:14px; font-size:14px; font-weight:600;
-        }
-        button.btn:hover{filter:brightness(1.08);}
-        .hint{font-size:12px;color:var(--muted);margin-top:10px;}
-        .msg{margin-top:10px;font-size:13px;}
-        .msg.ok{color:var(--ok);}
-        .msg.err{color:var(--danger);}
+        /* ================= TOP MESSAGE ================= */
 
-        .auth-shell{
-            min-height:100vh; display:flex; align-items:center; justify-content:center; padding:30px 16px;
+        .top-message{
+            height:42px;
+            background:#9ed9d5;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:13px;
+            letter-spacing:.2px;
         }
-        .auth-wrap{display:flex;justify-content:center;flex-direction:column;width:100%;max-width:560px;margin:0 auto;}
-        .auth-card{
-            width:100%; max-width:420px;
-            background:linear-gradient(180deg, rgba(22,29,48,.96), rgba(17,23,39,.98)),
-            url('images/dashboard-accent.jpg') center/cover no-repeat;
-            border:1px solid var(--border); border-radius:14px; padding:34px 32px; text-align:center;
+
+        .top-message span{
+            text-decoration:underline;
+            font-weight:600;
+            margin-left:5px;
         }
-        .auth-icon{color:var(--gold);font-size:22px;margin-bottom:6px;}
-        .auth-title{margin:0;font-size:21px;font-weight:700;color:#fff;letter-spacing:.4px;}
-        .auth-subtitle{margin:6px 0 20px;font-size:13px;color:var(--accent-blue);}
-        .auth-toggle{display:flex;gap:4px;background:var(--navy-2);border-radius:8px;padding:4px;margin-bottom:18px;}
+
+        /* ================= HEADER ================= */
+
+        header{
+            background:#fff;
+            border-bottom:1px solid #ddd;
+        }
+
+        .header-main{
+            height:135px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+        }
+
+        .brand{
+            text-align:center;
+        }
+
+        .brand-small{
+            font-size:12px;
+            letter-spacing:5px;
+            margin-bottom:3px;
+        }
+
+        .brand-name{
+            font-family:Georgia, 'Times New Roman', serif;
+            font-size:56px;
+            letter-spacing:-3px;
+            font-weight:500;
+        }
+
+        .brand-sub{
+            font-size:10px;
+            letter-spacing:4px;
+            margin-top:3px;
+        }
+
+        /* LEFT ICONS */
+
+        .header-left{
+            position:absolute;
+            left:38px;
+            display:flex;
+            gap:24px;
+        }
+
+        .header-icon{
+            font-size:24px;
+            cursor:pointer;
+        }
+
+        /* RIGHT SIDE */
+
+        .header-right{
+            position:absolute;
+            right:38px;
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        /* LOGIN BUTTON */
+
+        .header-login-btn{
+            background:#111;
+            color:#fff;
+            border:none;
+            padding:12px 24px;
+            font-size:11px;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            cursor:pointer;
+            transition:.2s;
+        }
+
+        .header-login-btn:hover{
+            background:#333;
+        }
+
+        /* ================= NAVIGATION ================= */
+
+        nav{
+            height:50px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:30px;
+            border-top:1px solid #eee;
+        }
+
+        nav a{
+            color:#111;
+            text-decoration:none;
+            font-size:12px;
+            letter-spacing:.4px;
+        }
+
+        nav a:hover{
+            text-decoration:underline;
+        }
+
+        /* ================= LANDING AREA ================= */
+
+        .landing-section{
+            background:#fafafa;
+            padding:55px 35px 70px;
+            text-align:center;
+        }
+
+        .landing-title{
+            font-family:Georgia, 'Times New Roman', serif;
+            font-size:36px;
+            font-weight:400;
+            margin:0;
+            letter-spacing:1px;
+        }
+
+        .landing-subtitle{
+            font-size:11px;
+            color:#777;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            margin:12px 0 35px;
+        }
+
+        /* ================= 4 PHOTO GRID ================= */
+
+        .photo-grid{
+            max-width:1150px;
+            margin:0 auto;
+
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:18px;
+        }
+
+        .photo-card{
+            height:320px;
+            overflow:hidden;
+            position:relative;
+            background:#eee;
+        }
+
+        .photo-card img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+            transition:.5s;
+        }
+
+        .photo-card:hover img{
+            transform:scale(1.05);
+        }
+
+        .photo-overlay{
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:0;
+
+            padding:45px 25px 22px;
+
+            background:linear-gradient(
+                    transparent,
+                    rgba(0,0,0,.65)
+            );
+
+            color:#fff;
+            text-align:left;
+        }
+
+        .photo-overlay h3{
+            margin:0 0 5px;
+            font-family:Georgia, 'Times New Roman', serif;
+            font-size:25px;
+            font-weight:400;
+        }
+
+        .photo-overlay p{
+            margin:0;
+            font-size:11px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+        }
+
+        /* ================= LOGIN POPUP ================= */
+
+        .login-overlay{
+            display:none;
+
+            position:fixed;
+            top:0;
+            left:0;
+
+            width:100%;
+            height:100%;
+
+            background:rgba(0,0,0,.55);
+
+            align-items:center;
+            justify-content:center;
+
+            z-index:9999;
+            padding:20px;
+        }
+
+        .login-overlay.show{
+            display:flex;
+        }
+
+        /* LOGIN CARD */
+
+        .login-card{
+            width:430px;
+            max-height:90vh;
+            overflow-y:auto;
+
+            background:#fff;
+            border:1px solid #dedede;
+
+            padding:45px 42px;
+
+            box-shadow:0 8px 30px rgba(0,0,0,.18);
+
+            position:relative;
+
+            animation:loginOpen .25s ease;
+        }
+
+        @keyframes loginOpen{
+
+            from{
+                opacity:0;
+                transform:translateY(-20px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        /* CLOSE BUTTON */
+
+        .close-login{
+            position:absolute;
+            top:15px;
+            right:20px;
+
+            font-size:25px;
+            color:#777;
+
+            cursor:pointer;
+            line-height:1;
+        }
+
+        .close-login:hover{
+            color:#111;
+        }
+
+        .gem-icon{
+            text-align:center;
+            font-size:30px;
+            color:#b99a35;
+            margin-bottom:12px;
+        }
+
+        .login-title{
+            text-align:center;
+            font-family:Georgia, 'Times New Roman', serif;
+            font-size:30px;
+            font-weight:400;
+            margin:0;
+            letter-spacing:1px;
+        }
+
+        .login-subtitle{
+            text-align:center;
+            font-size:11px;
+            color:#666;
+            letter-spacing:1.5px;
+            margin:10px 0 30px;
+            text-transform:uppercase;
+        }
+
+        /* TOGGLE */
+
+        .auth-toggle{
+            display:flex;
+            border-bottom:1px solid #ccc;
+            margin-bottom:28px;
+        }
+
         .auth-toggle-btn{
-            flex:1;background:transparent;border:none;color:var(--muted);padding:8px;border-radius:6px;
-            cursor:pointer;font-size:13px;font-weight:600;
+            flex:1;
+            border:none;
+            background:white;
+            padding:13px;
+            cursor:pointer;
+            font-size:12px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:#777;
         }
-        .auth-toggle-btn.active{background:var(--gold);color:#241a04;}
-        .authtab{display:none;text-align:left;}
-        .authtab.active{display:block;}
-        .auth-card label{text-align:left;}
-        .auth-card button.btn{width:100%;padding:12px;font-size:14px;}
-        .auth-card .hint{text-align:center;}
-        .auth-link{color:var(--accent-blue);cursor:pointer;text-decoration:underline;}
+
+        .auth-toggle-btn.active{
+            color:#111;
+            border-bottom:2px solid #111;
+        }
+
+        /* FORM */
+
+        .authtab{
+            display:none;
+        }
+
+        .authtab.active{
+            display:block;
+        }
+
+        label{
+            display:block;
+            font-size:10px;
+            letter-spacing:1.2px;
+            text-transform:uppercase;
+            margin:16px 0 7px;
+            color:#333;
+        }
+
+        input,
+        select{
+            width:100%;
+            padding:13px 10px;
+            border:none;
+            border-bottom:1px solid #aaa;
+            background:#fff;
+            color:#111;
+            font-size:14px;
+            outline:none;
+        }
+
+        input:focus,
+        select:focus{
+            border-bottom:2px solid #111;
+        }
+
+        input::placeholder{
+            color:#aaa;
+        }
+
+        .row{
+            display:flex;
+            gap:15px;
+        }
+
+        .row > div{
+            flex:1;
+        }
+
+        /* MAIN BUTTON */
+
+        button.main-btn{
+            width:100%;
+            margin-top:28px;
+            padding:15px;
+            border:none;
+            background:#111;
+            color:#fff;
+            font-size:12px;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            cursor:pointer;
+            transition:.2s;
+        }
+
+        button.main-btn:hover{
+            background:#333;
+        }
+
+        /* STAFF BUTTON */
+
+        .staff-btn{
+            background:#b99a35 !important;
+        }
+
+        .staff-btn:hover{
+            background:#94791e !important;
+        }
+
+        /* MESSAGE */
+
+        .msg{
+            margin-top:14px;
+            text-align:center;
+            font-size:12px;
+        }
+
+        .msg.ok{
+            color:#287a43;
+        }
+
+        .msg.err{
+            color:#c0392b;
+        }
+
+        .hint{
+            text-align:center;
+            color:#888;
+            font-size:11px;
+            line-height:1.6;
+            margin-top:20px;
+        }
+
+        .hint b{
+            color:#333;
+        }
+
+        .auth-link{
+            color:#111;
+            text-decoration:underline;
+            cursor:pointer;
+        }
+
+        /* ================= STAFF AREA ================= */
+
+        #staffRegisterBox{
+            display:none;
+            width:100%;
+            max-width:700px;
+            margin:35px auto;
+        }
+
+        .staff-card{
+            background:#fff;
+            border:1px solid #ddd;
+            padding:35px;
+        }
+
+        .staff-card h2{
+            font-family:Georgia, 'Times New Roman', serif;
+            font-size:25px;
+            font-weight:400;
+            margin-top:0;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer{
+            border-top:1px solid #ddd;
+            padding:25px;
+            text-align:center;
+            font-size:11px;
+            color:#777;
+            letter-spacing:.5px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width:700px){
+
+            .brand-name{
+                font-size:38px;
+            }
+
+            .header-left{
+                left:15px;
+            }
+
+            .header-right{
+                right:15px;
+            }
+
+            .header-left{
+                gap:12px;
+            }
+
+            nav{
+                gap:14px;
+                overflow-x:auto;
+                justify-content:flex-start;
+                padding:0 15px;
+            }
+
+            nav a{
+                white-space:nowrap;
+            }
+
+            .photo-grid{
+                grid-template-columns:1fr;
+            }
+
+            .photo-card{
+                height:250px;
+            }
+
+            .login-card{
+                width:100%;
+                padding:35px 25px;
+            }
+
+            .row{
+                flex-direction:column;
+                gap:0;
+            }
+
+        }
+
     </style>
 </head>
+
+
 <body>
 
-<div id="authShell" class="auth-shell">
-    <div class="auth-wrap">
-        <div class="auth-card">
-            <div class="auth-icon">&#10022;</div>
-            <h2 class="auth-title">GEM &amp; JEWELLERY</h2>
-            <p class="auth-subtitle">Management System &mdash; sign in to continue</p>
 
-            <div class="auth-toggle">
-                <button type="button" class="auth-toggle-btn active" data-authtab="authtab-login">Login</button>
-                <button type="button" class="auth-toggle-btn" data-authtab="authtab-register">Register</button>
-            </div>
+<!-- ================= TOP MESSAGE ================= -->
 
-            <div id="authtab-login" class="authtab active">
-                <label>Username</label>
-                <input type="text" id="loginUsername" placeholder="admin">
-                <label>Password</label>
-                <input type="password" id="loginPassword" placeholder="admin123">
-                <button class="btn" onclick="login()">Sign In</button>
-                <p class="hint">Default seeded account &rarr; <b>admin / admin123</b> (role: ADMIN)</p>
-                <div id="loginMsg" class="msg"></div>
-            </div>
+<div class="top-message">
 
-            <div id="authtab-register" class="authtab">
-                <label>Username</label>
-                <input type="text" id="regUsername">
-                <label>Password</label>
-                <input type="password" id="regPassword">
-                <label>Full Name</label>
-                <input type="text" id="regFullName">
-                <div class="row">
-                    <div><label>Email</label><input type="text" id="regEmail"></div>
-                    <div><label>Phone</label><input type="text" id="regPhone"></div>
-                </div>
-                <label>Address</label>
-                <input type="text" id="regAddress">
-                <button class="btn" onclick="registerCustomer()">Create Account</button>
-                <div id="regMsg" class="msg"></div>
-                <p class="hint">New customer? Fill this in and switch back to
-                    <span class="auth-link" onclick="$('.auth-toggle-btn[data-authtab=authtab-login]').click()">Login</span>
-                    once created.
-                </p>
-            </div>
-        </div>
-    </div>
+    Discover the world of fine gems and jewellery.
 
-    <div id="staffRegisterBox" class="auth-wrap" style="margin-top:22px;">
-        <div class="auth-card" style="max-width:520px;text-align:left;">
-            <h2 style="text-align:left;">
-                Register Staff / Admin
-                <span style="color:var(--muted);font-weight:400;font-size:12px;">(Admin only)</span>
-            </h2>
-            <div class="row">
-                <div><label>Username</label><input type="text" id="staffUsername"></div>
-                <div><label>Password</label><input type="password" id="staffPassword"></div>
-                <div>
-                    <label>Role</label>
-                    <select id="staffRole"><option value="STAFF">STAFF</option><option value="ADMIN">ADMIN</option></select>
-                </div>
-            </div>
-            <button class="btn" style="width:auto;" onclick="registerStaff()">Create Staff/Admin</button>
-            <div id="staffMsg" class="msg"></div>
-        </div>
-    </div>
+    <span>
+        Explore the Collection
+    </span>
+
 </div>
 
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-main">
+
+
+        <!-- LEFT -->
+
+        <div class="header-left">
+
+            <span class="header-icon">
+                ⌕
+            </span>
+
+            <span class="header-icon">
+                ⌖
+            </span>
+
+        </div>
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-small">
+                GEM
+            </div>
+
+            <div class="brand-name">
+                GEM & CO.
+            </div>
+
+            <div class="brand-sub">
+                FINE JEWELLERY
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="header-right">
+
+            <span class="header-icon">
+                ♧
+            </span>
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                    class="header-login-btn"
+                    onclick="openLogin()">
+
+                LOGIN
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- NAV -->
+
+    <nav>
+
+        <a href="#">
+            HIGH JEWELLERY
+        </a>
+
+        <a href="#">
+            JEWELLERY
+        </a>
+
+        <a href="#">
+            GEMSTONES
+        </a>
+
+        <a href="#">
+            COLLECTION
+        </a>
+
+        <a href="#">
+            ABOUT US
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= MAIN LANDING ================= -->
+
+<section class="landing-section">
+
+    <h1 class="landing-title">
+        Discover Our Collection
+    </h1>
+
+    <p class="landing-subtitle">
+        Fine Gems & Jewellery
+    </p>
+
+
+    <!-- ================= 4 PHOTOS ================= -->
+
+    <div class="photo-grid">
+
+
+        <!-- PHOTO 1 -->
+
+        <div class="photo-card">
+
+            <img
+                    src="images/286893438760217065.jpg" height="736" width="736" alt="Precious Gemstones">/>
+
+
+            <div class="photo-overlay">
+
+                <h3>
+                    Precious Gemstones
+                </h3>
+
+                <p>
+                    Discover rare natural gems
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 2 -->
+
+        <div class="photo-card">
+
+            <img
+                    src="images/@aka_jewellers  Wholesale and retail available….jpg"
+                    alt="Fine Jewellery">
+
+
+            <div class="photo-overlay">
+
+                <h3>
+                    Fine Jewellery
+                </h3>
+
+                <p>
+                    Elegant pieces for every occasion
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 3 -->
+
+        <div class="photo-card">
+
+            <img
+                    src="images/201536152070047815.jpg"
+                    alt="Sapphire Collection"> <div class="photo-overlay">
+
+                <h3>
+                    Sapphire Collection
+                </h3>
+
+                <p>
+                    Sri Lanka's finest blue gems
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 4 -->
+
+        <div class="photo-card"><img src="images/1121114901014978769.jpg"  alt="Gold Jewellery"/>
+
+
+
+
+            <div class="photo-overlay">
+
+                <h3>
+                    Gold Collection
+                </h3>
+
+                <p>
+                    Timeless luxury and craftsmanship
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= LOGIN POPUP ================= -->
+
+<div
+        class="login-overlay"
+        id="loginOverlay">
+
+
+    <div class="login-card">
+
+
+        <!-- CLOSE -->
+
+        <span
+                class="close-login"
+                onclick="closeLogin()">
+
+            &times;
+
+        </span>
+
+
+        <div class="gem-icon">
+            ◇
+        </div>
+
+
+        <h1 class="login-title">
+            GEM & JEWELLERY
+        </h1>
+
+
+        <p class="login-subtitle">
+            Management System
+        </p>
+
+
+        <!-- LOGIN / REGISTER -->
+
+        <div class="auth-toggle">
+
+
+            <button
+                    type="button"
+                    class="auth-toggle-btn active"
+                    data-authtab="authtab-login">
+
+                Login
+
+            </button>
+
+
+            <button
+                    type="button"
+                    class="auth-toggle-btn"
+                    data-authtab="authtab-register">
+
+                Register
+
+            </button>
+
+
+        </div>
+
+
+        <!-- ================= LOGIN ================= -->
+
+        <div
+                id="authtab-login"
+                class="authtab active">
+
+
+            <label>
+                Username
+            </label>
+
+
+            <input
+                    type="text"
+                    id="loginUsername"
+                    placeholder="Enter username">
+
+
+            <label>
+                Password
+            </label>
+
+
+            <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password">
+
+
+            <button
+                    class="main-btn"
+                    onclick="login()">
+
+                Login
+
+            </button>
+
+
+            <p class="hint">
+
+                Default seeded account
+
+                <br>
+
+                <b>
+                    admin / admin123
+                </b>
+
+                <br>
+
+                Role: ADMIN
+
+            </p>
+
+
+            <div
+                    id="loginMsg"
+                    class="msg">
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= CUSTOMER REGISTER ================= -->
+
+        <div
+                id="authtab-register"
+                class="authtab">
+
+
+            <label>
+                Username
+            </label>
+
+
+            <input
+                    type="text"
+                    id="regUsername"
+                    placeholder="Create username">
+
+
+            <label>
+                Password
+            </label>
+
+
+            <input
+                    type="password"
+                    id="regPassword"
+                    placeholder="Create password">
+
+
+            <label>
+                Full Name
+            </label>
+
+
+            <input
+                    type="text"
+                    id="regFullName"
+                    placeholder="Full name">
+
+
+            <div class="row">
+
+
+                <div>
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                            type="text"
+                            id="regEmail"
+                            placeholder="Email">
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                            type="text"
+                            id="regPhone"
+                            placeholder="Phone">
+
+                </div>
+
+
+            </div>
+
+
+            <label>
+                Address
+            </label>
+
+
+            <input
+                    type="text"
+                    id="regAddress"
+                    placeholder="Address">
+
+
+            <button
+                    class="main-btn"
+                    onclick="registerCustomer()">
+
+                Create Account
+
+            </button>
+
+
+            <div
+                    id="regMsg"
+                    class="msg">
+
+            </div>
+
+
+            <p class="hint">
+
+                Already have an account?
+
+                <span
+                        class="auth-link"
+                        onclick="$('.auth-toggle-btn[data-authtab=authtab-login]').click()">
+
+                    Login
+
+                </span>
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= STAFF REGISTER ================= -->
+
+<div id="staffRegisterBox">
+
+    <div class="staff-card">
+
+        <h2>
+
+            Register Staff / Admin
+
+            <span
+                    style="
+                    color:#888;
+                    font-family:Arial;
+                    font-size:11px;
+                    ">
+
+                (Admin only)
+
+            </span>
+
+        </h2>
+
+
+        <div class="row">
+
+
+            <div>
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                        type="text"
+                        id="staffUsername"
+                        placeholder="Username">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                        type="password"
+                        id="staffPassword"
+                        placeholder="Password">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Role
+                </label>
+
+                <select id="staffRole">
+
+                    <option value="STAFF">
+                        STAFF
+                    </option>
+
+                    <option value="ADMIN">
+                        ADMIN
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+                class="main-btn staff-btn"
+                style="width:auto;"
+                onclick="registerStaff()">
+
+            Create Staff / Admin
+
+        </button>
+
+
+        <div
+                id="staffMsg"
+                class="msg">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026 GEM & JEWELLERY
+    &nbsp; | &nbsp;
+    Fine Gems & Jewellery Management System
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
 <script>
+
     const API = "";
 
-    function authHeaders(){ return { "Authorization": "Bearer " + localStorage.getItem("JWT") }; }
 
-    /* If already logged in, don't show the login page again - go straight to the app */
-    $(function(){
-        if (localStorage.getItem("JWT")) {
-            window.location.href = "index.html";
+    /* ================= OPEN LOGIN ================= */
+
+    function openLogin(){
+
+        $('#loginOverlay').addClass('show');
+
+        $('#loginUsername').focus();
+
+    }
+
+
+    /* ================= CLOSE LOGIN ================= */
+
+    function closeLogin(){
+
+        $('#loginOverlay').removeClass('show');
+
+    }
+
+
+    /* ================= CLOSE WHEN CLICK OUTSIDE ================= */
+
+    $('#loginOverlay').on('click', function(e){
+
+        if(e.target === this){
+
+            closeLogin();
+
         }
+
     });
+
+
+    /* ================= CLOSE WITH ESC ================= */
+
+    $(document).on('keydown', function(e){
+
+        if(e.key === "Escape"){
+
+            closeLogin();
+
+        }
+
+    });
+
+
+    /* ================= AUTH HEADERS ================= */
+
+    function authHeaders(){
+
+        return {
+
+            "Authorization":
+                "Bearer " + localStorage.getItem("JWT")
+
+        };
+
+    }
+
+
+    /* ================= ALREADY LOGGED IN ================= */
+
+    $(function(){
+
+        if(localStorage.getItem("JWT")){
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    });
+
+
+    /* ================= LOGIN / REGISTER TOGGLE ================= */
 
     $('.auth-toggle-btn').on('click', function(){
-        const target = $(this).data('authtab');
-        $('.auth-toggle-btn').removeClass('active');
-        $(this).addClass('active');
-        $('.authtab').removeClass('active');
-        $('#'+target).addClass('active');
+
+        const target =
+            $(this).data('authtab');
+
+
+        $('.auth-toggle-btn')
+            .removeClass('active');
+
+
+        $(this)
+            .addClass('active');
+
+
+        $('.authtab')
+            .removeClass('active');
+
+
+        $('#'+target)
+            .addClass('active');
+
     });
 
+
+    /* ================= LOGIN ================= */
+
     function login(){
-        const obj = JSON.stringify({
-            username: $('#loginUsername').val().trim(),
-            password: $('#loginPassword').val()
-        });
+
+        const username =
+            $('#loginUsername').val().trim();
+
+
+        const password =
+            $('#loginPassword').val();
+
+
+        if(!username || !password){
+
+            $('#loginMsg')
+                .removeClass('ok')
+                .addClass('err')
+                .text(
+                    "Please enter username and password."
+                );
+
+            return;
+
+        }
+
+
+        const obj =
+            JSON.stringify({
+
+                username:username,
+                password:password
+
+            });
+
+
         $.ajax({
-            url: API+"/v1/auth/login", type:"POST", contentType:"application/json", data: obj,
-            success: function(res){
-                if(res.status !== 0){ $('#loginMsg').removeClass('ok').addClass('err').text(res.message); return; }
-                localStorage.setItem("JWT", res.body.token);
-                localStorage.setItem("role", res.body.role);
-                localStorage.setItem("username", res.body.username);
+
+            url:
+                API + "/v1/auth/login",
+
+            type:
+                "POST",
+
+            contentType:
+                "application/json",
+
+            data:
+            obj,
+
+
+            success:function(res){
+
+                if(res.status !== 0){
+
+                    $('#loginMsg')
+                        .removeClass('ok')
+                        .addClass('err')
+                        .text(res.message);
+
+                    return;
+
+                }
+
+
+                /* SAVE LOGIN DATA */
+
+                localStorage.setItem(
+                    "JWT",
+                    res.body.token
+                );
+
+
+                localStorage.setItem(
+                    "role",
+                    res.body.role
+                );
+
+
+                localStorage.setItem(
+                    "username",
+                    res.body.username
+                );
+
+
+                /* CUSTOMER */
 
                 if(res.body.role === 'CUSTOMER'){
+
                     $.ajax({
-                        url: API+"/v1/customers/me", type:"GET", headers: authHeaders(),
-                        success: function(cres){
-                            if(cres.status === 0) localStorage.setItem("customerId", cres.body.customerId);
-                            window.location.href = "index.html";
+
+                        url:
+                            API + "/v1/customers/me",
+
+                        type:
+                            "GET",
+
+                        headers:
+                            authHeaders(),
+
+
+                        success:function(cres){
+
+                            if(cres.status === 0){
+
+                                localStorage.setItem(
+                                    "customerId",
+                                    cres.body.customerId
+                                );
+
+                            }
+
+
+                            window.location.href =
+                                "index.html";
+
                         },
-                        error: function(){ window.location.href = "index.html"; }
+
+
+                        error:function(){
+
+                            window.location.href =
+                                "index.html";
+
+                        }
+
                     });
-                } else {
-                    window.location.href = "index.html";
+
                 }
+
+                else{
+
+                    /* ADMIN / STAFF */
+
+                    window.location.href =
+                        "index.html";
+
+                }
+
             },
-            error: function(){ $('#loginMsg').removeClass('ok').addClass('err').text("Login failed - check credentials"); }
+
+
+            error:function(){
+
+                $('#loginMsg')
+                    .removeClass('ok')
+                    .addClass('err')
+                    .text(
+                        "Login failed - check credentials"
+                    );
+
+            }
+
         });
+
     }
+
+
+    /* ================= CUSTOMER REGISTER ================= */
 
     function registerCustomer(){
-        const obj = JSON.stringify({
-            username: $('#regUsername').val().trim(),
-            password: $('#regPassword').val(),
-            fullName: $('#regFullName').val(),
-            email: $('#regEmail').val(),
-            phone: $('#regPhone').val(),
-            address: $('#regAddress').val()
-        });
+
+        const obj =
+            JSON.stringify({
+
+                username:
+                    $('#regUsername').val().trim(),
+
+                password:
+                    $('#regPassword').val(),
+
+                fullName:
+                    $('#regFullName').val(),
+
+                email:
+                    $('#regEmail').val(),
+
+                phone:
+                    $('#regPhone').val(),
+
+                address:
+                    $('#regAddress').val()
+
+            });
+
+
         $.ajax({
-            url: API+"/v1/auth/register-customer", type:"POST", contentType:"application/json", data: obj,
-            success: function(res){
-                $('#regMsg').removeClass(res.status===0?'err':'ok').addClass(res.status===0?'ok':'err').text(res.message);
+
+            url:
+                API + "/v1/auth/register-customer",
+
+            type:
+                "POST",
+
+            contentType:
+                "application/json",
+
+            data:
+            obj,
+
+
+            success:function(res){
+
+                $('#regMsg')
+                    .removeClass(
+                        res.status === 0
+                            ? 'err'
+                            : 'ok'
+                    )
+                    .addClass(
+                        res.status === 0
+                            ? 'ok'
+                            : 'err'
+                    )
+                    .text(res.message);
+
             },
-            error: function(){ $('#regMsg').removeClass('ok').addClass('err').text("Registration failed"); }
+
+
+            error:function(){
+
+                $('#regMsg')
+                    .removeClass('ok')
+                    .addClass('err')
+                    .text(
+                        "Registration failed"
+                    );
+
+            }
+
         });
+
     }
 
+
+    /* ================= STAFF / ADMIN REGISTER ================= */
+
     function registerStaff(){
-        const obj = JSON.stringify({
-            username: $('#staffUsername').val().trim(),
-            password: $('#staffPassword').val(),
-            roleName: $('#staffRole').val()
-        });
+
+        const obj =
+            JSON.stringify({
+
+                username:
+                    $('#staffUsername').val().trim(),
+
+                password:
+                    $('#staffPassword').val(),
+
+                roleName:
+                    $('#staffRole').val()
+
+            });
+
+
         $.ajax({
-            url: API+"/v1/auth/register-staff", type:"POST", contentType:"application/json", data: obj,
-            headers: authHeaders(),
-            success: function(res){
-                $('#staffMsg').removeClass(res.status===0?'err':'ok').addClass(res.status===0?'ok':'err').text(res.message);
+
+            url:
+                API + "/v1/auth/register-staff",
+
+            type:
+                "POST",
+
+            contentType:
+                "application/json",
+
+            data:
+            obj,
+
+            headers:
+                authHeaders(),
+
+
+            success:function(res){
+
+                $('#staffMsg')
+                    .removeClass(
+                        res.status === 0
+                            ? 'err'
+                            : 'ok'
+                    )
+                    .addClass(
+                        res.status === 0
+                            ? 'ok'
+                            : 'err'
+                    )
+                    .text(res.message);
+
             },
-            error: function(){ $('#staffMsg').removeClass('ok').addClass('err').text("Failed (are you logged in as ADMIN?)"); }
+
+
+            error:function(){
+
+                $('#staffMsg')
+                    .removeClass('ok')
+                    .addClass('err')
+                    .text(
+                        "Failed (are you logged in as ADMIN?)"
+                    );
+
+            }
+
         });
+
     }
+
 </script>
+
+
 </body>
 </html>
