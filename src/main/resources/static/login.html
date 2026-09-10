@@ -556,17 +556,6 @@
 <body>
 
 
-<!-- ================= TOP MESSAGE ================= -->
-
-<div class="top-message">
-
-    Discover the world of fine gems and jewellery.
-
-    <span>
-        Explore the Collection
-    </span>
-
-</div>
 
 
 <!-- ================= HEADER ================= -->
@@ -1142,7 +1131,7 @@
 
 <script>
 
-    const API = "";
+    const API = "http://localhost:8080";
 
 
     /* ================= OPEN LOGIN ================= */
@@ -1204,19 +1193,6 @@
 
     }
 
-
-    /* ================= ALREADY LOGGED IN ================= */
-
-    $(function(){
-
-        if(localStorage.getItem("JWT")){
-
-            window.location.href =
-                "index.html";
-
-        }
-
-    });
 
 
     /* ================= LOGIN / REGISTER TOGGLE ================= */
@@ -1374,13 +1350,16 @@
 
                 }
 
-                else{
+                else {
 
-                    /* ADMIN / STAFF */
+                    // Show Staff/Admin registration only for ADMIN
+                    if(res.body.role === 'ADMIN'){
+                        localStorage.setItem("showStaffRegister", "true");
+                    }else{
+                        localStorage.removeItem("showStaffRegister");
+                    }
 
-                    window.location.href =
-                        "index.html";
-
+                    window.location.href = "index.html";
                 }
 
             },

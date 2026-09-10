@@ -3,116 +3,1040 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Gem &amp; Jewellery Management System</title>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
+
+        /* =====================================================
+           TIFFANY STYLE - GEM & JEWELLERY
+        ===================================================== */
+
         :root{
-            --navy:#0d1220; --navy-2:#141b2e; --card:#161d30; --card-2:#1b2338; --border:#2a3352;
-            --gold:#d4af37; --gold-soft:#e8c96a; --text:#eef1f8; --muted:#8b93ab;
-            --accent-blue:#7c9cff; --danger:#e5677a; --ok:#6fd38f;
+            --white:#ffffff;
+            --light:#fafafa;
+            --black:#111111;
+            --black-soft:#333333;
+
+            --gold:#b99a35;
+            --gold-light:#d4bd68;
+
+            --border:#dddddd;
+            --border-light:#eeeeee;
+
+            --text:#222222;
+            --muted:#777777;
+
+            --ok:#287a43;
+            --danger:#b83232;
         }
-        *{box-sizing:border-box;}
+
+        *{
+            box-sizing:border-box;
+        }
+
         body{
-            margin:0; font-family:'Segoe UI', Arial, sans-serif;
-            background:linear-gradient(180deg, rgba(10,13,24,.95), rgba(10,13,24,.98)),
-            url('images/dashboard-accent.jpg') center top/cover no-repeat fixed;
-            color:var(--text); min-height:100vh;
+            margin:0;
+            font-family:Arial, Helvetica, sans-serif;
+
+            background:
+                    linear-gradient(
+                            rgba(255,255,255,.94),
+                            rgba(255,255,255,.97)
+                    ),
+                    url('images/dashboard-accent.jpg')
+                    center top/cover no-repeat fixed;
+
+            color:var(--text);
+            min-height:100vh;
         }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
         .topbar{
-            display:flex; align-items:center; gap:24px;
-            background:linear-gradient(180deg, rgba(13,18,32,.97), rgba(13,18,32,.9));
-            border-bottom:1px solid var(--border); padding:12px 24px; flex-wrap:wrap;
+            background:#ffffff;
+
+            min-height:145px;
+
+            border-bottom:1px solid var(--border);
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            position:relative;
+
+            padding:20px 30px;
         }
-        .brand{font-size:19px;font-weight:600;letter-spacing:.3px;color:#fff;white-space:nowrap;}
-        .brand .star{color:var(--gold);margin-right:6px;}
-        nav{display:flex;flex-wrap:wrap;gap:4px;flex:1;}
+
+
+        .brand{
+            font-family:Georgia,'Times New Roman',serif;
+
+            font-size:32px;
+
+            font-weight:400;
+
+            letter-spacing:1px;
+
+            color:var(--black);
+
+            text-align:center;
+
+            white-space:nowrap;
+        }
+
+        .brand .star{
+            color:var(--gold);
+
+            margin-right:8px;
+
+            font-size:25px;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        nav{
+            position:absolute;
+
+            left:0;
+            right:0;
+
+            bottom:-52px;
+
+            height:52px;
+
+            background:#ffffff;
+
+            border-bottom:1px solid var(--border);
+
+            border-top:1px solid var(--border-light);
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            gap:28px;
+
+            z-index:100;
+        }
+
+
         nav button{
-            background:transparent;border:1px solid transparent;color:var(--muted);
-            padding:8px 14px;cursor:pointer;border-radius:6px;font-size:14px;font-weight:500;
+            background:transparent;
+
+            border:none;
+
+            color:var(--black);
+
+            padding:8px 4px;
+
+            cursor:pointer;
+
+            font-size:10px;
+
+            letter-spacing:1.1px;
+
+            text-transform:uppercase;
+
+            transition:.2s;
+
+            border-bottom:2px solid transparent;
         }
-        nav button.active{background:rgba(212,175,55,.12);color:var(--gold-soft);}
-        nav button:hover{color:#fff;}
-        #whoami{color:var(--gold-soft);font-size:13px;white-space:nowrap;}
-        #logoutBtn{background:transparent;border:1px solid var(--border);color:var(--muted);}
-        #logoutBtn:hover{border-color:var(--danger);color:var(--danger);}
-        main{max-width:1100px;margin:24px auto;padding:0 16px 60px;}
-        .panel{display:none;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px;}
-        .panel.active{display:block;}
+
+
+        nav button:hover{
+            color:var(--gold);
+        }
+
+
+        nav button.active{
+            color:var(--gold);
+
+            border-bottom:2px solid var(--gold);
+        }
+
+
+        /* =====================================================
+           USER + LOGOUT
+        ===================================================== */
+
+        #whoami{
+            position:absolute;
+
+            right:125px;
+
+            top:25px;
+
+            color:var(--muted);
+
+            font-size:11px;
+
+            letter-spacing:.5px;
+        }
+
+
+        #logoutBtn{
+            position:absolute;
+
+            right:30px;
+
+            top:18px;
+
+            background:var(--black);
+
+            color:#ffffff;
+
+            border:1px solid var(--black);
+
+            padding:10px 17px;
+
+            cursor:pointer;
+
+            font-size:9px;
+
+            letter-spacing:1.4px;
+
+            text-transform:uppercase;
+
+            border-radius:0;
+        }
+
+
+        #logoutBtn:hover{
+            background:#333333;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        main{
+            max-width:1150px;
+
+            margin:82px auto 0;
+
+            padding:30px 20px 70px;
+        }
+
+
+        /* =====================================================
+           PANELS
+        ===================================================== */
+
+        .panel{
+            display:none;
+
+            background:#ffffff;
+
+            border:1px solid var(--border);
+
+            padding:30px;
+
+            margin-bottom:25px;
+
+            box-shadow:0 5px 22px rgba(0,0,0,.05);
+
+            border-radius:0;
+        }
+
+
+        .panel.active{
+            display:block;
+        }
+
+
         #tab-dashboard{
-            background:linear-gradient(180deg, rgba(22,29,48,.92), rgba(22,29,48,.97)),
-            url('images/dashboard-accent.jpg') center/cover no-repeat;
+            background:
+                    linear-gradient(
+                            rgba(255,255,255,.94),
+                            rgba(255,255,255,.96)
+                    ),
+                    url('images/dashboard-accent.jpg')
+                    center/cover no-repeat;
+
+            border:none;
+
+            box-shadow:none;
         }
-        h2{margin-top:0;color:var(--gold-soft);font-size:18px;font-weight:600;}
-        h4{color:var(--gold-soft);font-weight:600;}
-        label{display:block;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin:10px 0 4px;}
-        input, select{
-            width:100%;padding:10px 12px;border-radius:7px;border:1px solid var(--border);
-            background:var(--navy-2);color:var(--text);font-size:14px;
+
+
+        /* =====================================================
+           HEADINGS
+        ===================================================== */
+
+        h2{
+            margin:0 0 25px;
+
+            font-family:Georgia,'Times New Roman',serif;
+
+            font-size:29px;
+
+            font-weight:400;
+
+            color:var(--black);
+
+            letter-spacing:.3px;
         }
-        input:focus, select:focus{outline:none;border-color:var(--gold);}
-        input::placeholder{color:#5b6482;}
-        .row{display:flex;gap:14px;flex-wrap:wrap;}
-        .row > div{flex:1;min-width:180px;}
+
+
+        h4{
+            font-family:Georgia,'Times New Roman',serif;
+
+            color:var(--black);
+
+            font-weight:400;
+
+            font-size:18px;
+        }
+
+
+        /* =====================================================
+           LABELS
+        ===================================================== */
+
+        label{
+            display:block;
+
+            font-size:10px;
+
+            letter-spacing:1.2px;
+
+            text-transform:uppercase;
+
+            color:#444444;
+
+            margin:15px 0 6px;
+        }
+
+
+        /* =====================================================
+           INPUTS
+        ===================================================== */
+
+        input,
+        select{
+            width:100%;
+
+            padding:12px 10px;
+
+            border:none;
+
+            border-bottom:1px solid #aaaaaa;
+
+            border-radius:0;
+
+            background:#ffffff;
+
+            color:var(--black);
+
+            font-size:14px;
+
+            outline:none;
+        }
+
+
+        input:focus,
+        select:focus{
+            border-bottom:2px solid var(--black);
+        }
+
+
+        input::placeholder{
+            color:#aaaaaa;
+        }
+
+
+        /* =====================================================
+           ROW
+        ===================================================== */
+
+        .row{
+            display:flex;
+
+            gap:20px;
+
+            flex-wrap:wrap;
+        }
+
+
+        .row > div{
+            flex:1;
+
+            min-width:180px;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
         button.btn{
-            background:linear-gradient(180deg, var(--gold-soft), var(--gold));color:#241a04;border:none;
-            padding:11px 18px;border-radius:7px;cursor:pointer;margin-top:14px;font-size:14px;font-weight:600;
+            background:var(--black);
+
+            color:#ffffff;
+
+            border:none;
+
+            padding:12px 22px;
+
+            border-radius:0;
+
+            cursor:pointer;
+
+            margin-top:20px;
+
+            font-size:10px;
+
+            font-weight:500;
+
+            letter-spacing:1.4px;
+
+            text-transform:uppercase;
+
+            transition:.2s;
         }
-        button.btn:hover{filter:brightness(1.08);}
-        button.btn.secondary{background:transparent;color:var(--muted);border:1px solid var(--border);}
-        button.btn.secondary:hover{color:#fff;border-color:var(--gold);}
-        button.btn.small{padding:6px 12px;font-size:12px;margin:0 4px 0 0;font-weight:500;}
-        table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px;}
-        th,td{padding:9px 10px;border-bottom:1px solid var(--border);text-align:left;}
-        th{color:var(--gold-soft);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.4px;}
-        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-        .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:14px;}
-        .item-card{background:var(--card-2);border:1px solid var(--border);border-radius:10px;padding:16px;}
-        .item-card h4{margin:0 0 6px;color:var(--gold-soft);font-size:15px;}
-        .item-card p{margin:2px 0;font-size:13px;color:var(--muted);}
-        .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;background:rgba(212,175,55,.15);color:var(--gold-soft);}
-        .hint{font-size:12px;color:var(--muted);margin-top:10px;}
-        .msg{margin-top:10px;font-size:13px;}
-        .msg.ok{color:var(--ok);}
-        .msg.err{color:var(--danger);}
-        @media(max-width:760px){.two-col{grid-template-columns:1fr;} .topbar{flex-direction:column;align-items:flex-start;}}
+
+
+        button.btn:hover{
+            background:#333333;
+        }
+
+
+        button.btn.secondary{
+            background:#ffffff;
+
+            color:var(--black);
+
+            border:1px solid #999999;
+        }
+
+
+        button.btn.secondary:hover{
+            color:var(--gold);
+
+            border-color:var(--gold);
+        }
+
+
+        button.btn.small{
+            padding:8px 14px;
+
+            font-size:9px;
+
+            margin:0 5px 0 0;
+        }
+
+
+        /* =====================================================
+           DASHBOARD CARDS
+        ===================================================== */
+
+        .item-card{
+            background:#ffffff;
+
+            border:1px solid var(--border);
+
+            padding:24px;
+
+            border-radius:0;
+
+            min-height:120px;
+
+            transition:.2s;
+        }
+
+
+        .item-card:hover{
+            border-color:var(--gold);
+
+            box-shadow:0 7px 20px rgba(0,0,0,.06);
+
+            transform:translateY(-2px);
+        }
+
+
+        .item-card h4{
+            margin:0 0 8px;
+
+            color:var(--gold);
+
+            font-size:27px;
+
+            font-family:Georgia,'Times New Roman',serif;
+        }
+
+
+        .item-card p{
+            margin:0;
+
+            color:var(--muted);
+
+            font-size:10px;
+
+            letter-spacing:1px;
+
+            text-transform:uppercase;
+        }
+
+
+        /* =====================================================
+           CARD GRID
+        ===================================================== */
+
+        .card-grid{
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fill,minmax(220px,1fr));
+
+            gap:18px;
+
+            margin-top:20px;
+        }
+
+
+        /* =====================================================
+           ITEM CARD
+        ===================================================== */
+
+        .item-card h4{
+            margin:0 0 8px;
+
+            color:var(--black);
+
+            font-size:17px;
+        }
+
+
+        .item-card h4 .badge{
+            margin-left:5px;
+        }
+
+
+        .item-card p{
+            margin:5px 0;
+
+            color:#666666;
+
+            font-size:12px;
+
+            letter-spacing:0;
+
+            text-transform:none;
+        }
+
+
+        /* =====================================================
+           BADGE
+        ===================================================== */
+
+        .badge{
+            display:inline-block;
+
+            padding:4px 8px;
+
+            background:#f7f2df;
+
+            color:#8b721f;
+
+            font-size:9px;
+
+            letter-spacing:.5px;
+
+            border:1px solid #e7dba9;
+        }
+
+
+        /* =====================================================
+           TABLE
+        ===================================================== */
+
+        table{
+            width:100%;
+
+            border-collapse:collapse;
+
+            margin-top:20px;
+
+            font-size:13px;
+        }
+
+
+        th,
+        td{
+            padding:12px 10px;
+
+            border-bottom:1px solid var(--border);
+
+            text-align:left;
+        }
+
+
+        th{
+            color:var(--gold);
+
+            font-weight:600;
+
+            font-size:10px;
+
+            text-transform:uppercase;
+
+            letter-spacing:1px;
+        }
+
+
+        td{
+            color:#444444;
+        }
+
+
+        tr:hover td{
+            background:#fafafa;
+        }
+
+
+        /* =====================================================
+           TWO COLUMN
+        ===================================================== */
+
+        .two-col{
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            gap:30px;
+        }
+
+
+        /* =====================================================
+           MESSAGES
+        ===================================================== */
+
+        .hint{
+            font-size:12px;
+
+            color:var(--muted);
+
+            margin-top:10px;
+        }
+
+
+        .msg{
+            margin-top:12px;
+
+            font-size:13px;
+        }
+
+
+        .msg.ok{
+            color:var(--ok);
+        }
+
+
+        .msg.err{
+            color:var(--danger);
+        }
+
+
+        /* =====================================================
+           SMART JEWELLERY ASSISTANT
+        ===================================================== */
+
+        #smartAssistant{
+            position:fixed;
+
+            right:25px;
+
+            bottom:25px;
+
+            z-index:9999;
+        }
+
+
+        #chatButton{
+            width:60px;
+
+            height:60px;
+
+            border-radius:50%;
+
+            border:none;
+
+            background:var(--black);
+
+            color:var(--gold-light);
+
+            font-size:24px;
+
+            cursor:pointer;
+
+            box-shadow:0 5px 20px rgba(0,0,0,.25);
+
+            transition:.2s;
+        }
+
+
+        #chatButton:hover{
+            background:var(--gold);
+
+            color:var(--black);
+
+            transform:scale(1.05);
+        }
+
+
+        #chatBox{
+            display:none;
+
+            width:350px;
+
+            height:470px;
+
+            background:#ffffff;
+
+            border:1px solid var(--border);
+
+            border-radius:0;
+
+            box-shadow:0 8px 35px rgba(0,0,0,.2);
+
+            overflow:hidden;
+
+            margin-bottom:12px;
+        }
+
+
+        .chatHeader{
+            background:var(--black);
+
+            padding:15px;
+
+            color:#ffffff;
+
+            font-family:Georgia,'Times New Roman',serif;
+
+            font-size:16px;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+        }
+
+
+        #chatMessages{
+            height:340px;
+
+            padding:12px;
+
+            overflow-y:auto;
+
+            background:#fafafa;
+        }
+
+
+        .botMessage,
+        .userMessage{
+            padding:10px 12px;
+
+            border-radius:0;
+
+            margin:8px 0;
+
+            font-size:13px;
+
+            line-height:1.5;
+
+            max-width:85%;
+        }
+
+
+        .botMessage{
+            background:#ffffff;
+
+            border:1px solid var(--border);
+
+            color:#333333;
+        }
+
+
+        .userMessage{
+            background:#f7f2df;
+
+            border:1px solid #e6dba8;
+
+            color:#80691d;
+
+            margin-left:auto;
+        }
+
+
+        .chatInput{
+            display:flex;
+
+            gap:6px;
+
+            padding:10px;
+
+            border-top:1px solid var(--border);
+
+            background:#ffffff;
+        }
+
+
+        .chatInput input{
+            flex:1;
+
+            border-bottom:1px solid #aaaaaa;
+        }
+
+
+        .chatInput button{
+            width:45px;
+
+            background:var(--black);
+
+            color:var(--gold-light);
+
+            border:none;
+
+            border-radius:0;
+
+            cursor:pointer;
+
+            font-size:16px;
+        }
+
+
+        .chatInput button:hover{
+            background:var(--gold);
+
+            color:var(--black);
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media(max-width:760px){
+
+            .topbar{
+                min-height:125px;
+
+                padding:15px;
+            }
+
+
+            .brand{
+                font-size:25px;
+            }
+
+
+            #whoami{
+                top:65px;
+
+                left:20px;
+
+                right:auto;
+            }
+
+
+            #logoutBtn{
+                top:57px;
+
+                right:20px;
+            }
+
+
+            nav{
+                position:relative;
+
+                bottom:auto;
+
+                height:50px;
+
+                overflow-x:auto;
+
+                justify-content:flex-start;
+
+                padding:0 15px;
+
+                gap:20px;
+            }
+
+
+            main{
+                margin-top:20px;
+
+                padding:20px 15px 50px;
+            }
+
+
+            .panel{
+                padding:22px;
+            }
+
+
+            .two-col{
+                grid-template-columns:1fr;
+            }
+
+
+            .row{
+                flex-direction:column;
+
+                gap:0;
+            }
+
+
+            .card-grid{
+                grid-template-columns:1fr;
+            }
+
+
+            #chatBox{
+                width:calc(100vw - 30px);
+
+                height:450px;
+            }
+
+
+            #smartAssistant{
+                right:15px;
+
+                bottom:15px;
+            }
+
+
+            table{
+                display:block;
+
+                overflow-x:auto;
+
+                white-space:nowrap;
+            }
+
+        }
+
+
+        @media(max-width:500px){
+
+            .brand{
+                font-size:22px;
+            }
+
+            nav{
+                gap:16px;
+            }
+
+            nav button{
+                font-size:9px;
+            }
+
+        }
+
     </style>
 </head>
+
 <body>
 
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
 <div class="topbar">
-    <div class="brand"><span class="star">&#10022;</span>GEM &amp; JEWELLERY</div>
+
+    <div class="brand">
+        <span class="star">&#10022;</span>
+        GEM &amp; CO.
+    </div>
+
+
     <nav id="navBar">
-        <button data-tab="tab-dashboard" class="active">Dashboard</button>
-        <button data-tab="tab-catalogue">Catalogue</button>
-        <button data-tab="tab-gemstones">Gemstones</button>
-        <button data-tab="tab-reference">Reference Data</button>
-        <button data-tab="tab-customers">Customers</button>
-        <button data-tab="tab-orders">Orders</button>
+
+        <button data-tab="tab-dashboard" class="active">
+            Dashboard
+        </button>
+
+        <button data-tab="tab-catalogue">
+            Catalogue
+        </button>
+
+        <button data-tab="tab-gemstones">
+            Gemstones
+        </button>
+
+        <button data-tab="tab-reference">
+            Reference Data
+        </button>
+
+        <button data-tab="tab-customers">
+            Customers
+        </button>
+
+        <button data-tab="tab-orders">
+            Orders
+        </button>
+
     </nav>
+
+
     <span id="whoami"></span>
-    <button id="logoutBtn" class="btn small">Logout</button>
+
+
+    <button id="logoutBtn" class="btn small">
+        Logout
+    </button>
+
 </div>
+
 
 <main>
 
-    <!-- SMART JEWELLERY ASSISTANT -->
+
+    <!-- =====================================================
+         SMART JEWELLERY ASSISTANT
+    ====================================================== -->
 
     <div id="smartAssistant">
 
         <div id="chatBox">
 
             <div class="chatHeader">
-                <span>💎 Gem Assistant</span>
 
-                <span onclick="closeChat()"
-                      style="cursor:pointer;font-size:18px;">
-                ✕
-            </span>
+                <span>
+                    💎 Gem Assistant
+                </span>
+
+                <span
+                        onclick="closeChat()"
+                        style="cursor:pointer;font-size:18px;"
+                >
+                    ✕
+                </span>
+
             </div>
+
 
             <div id="chatMessages">
 
                 <div class="botMessage">
+
                     👋 Hi! I'm Gem Assistant.
 
                     <br><br>
@@ -123,17 +1047,27 @@
                     <br><br>
 
                     Try:
+
                     <br>
+
                     💎 "Show me blue gemstones"
+
                     <br>
+
                     💍 "I need a ring"
+
                     <br>
+
                     💰 "Jewellery under 100000"
+
                     <br>
+
                     🛍️ "How can I order?"
+
                 </div>
 
             </div>
+
 
             <div class="chatInput">
 
@@ -144,684 +1078,2266 @@
                         onkeypress="if(event.key === 'Enter') sendMessage()"
                 >
 
-                <button onclick="sendMessage()">➤</button>
+                <button onclick="sendMessage()">
+                    ➤
+                </button>
 
             </div>
 
         </div>
+
 
         <button id="chatButton" onclick="openChat()">
             💬
         </button>
 
     </div>
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
     <section id="tab-dashboard" class="panel active">
+
         <h2>Dashboard</h2>
-        <p id="dashboardWelcome">Please log in.</p>
+
+        <p id="dashboardWelcome">
+            Please log in.
+        </p>
+
+
         <div class="row">
-            <div class="item-card"><h4 id="statGemstones">-</h4><p>Gemstones in catalogue</p></div>
-            <div class="item-card"><h4 id="statItems">-</h4><p>Jewellery items</p></div>
-            <div class="item-card"><h4 id="statOrders">-</h4><p>Orders on record</p></div>
-            <div class="item-card"><h4 id="statCustomers">-</h4><p>Registered customers</p></div>
+
+            <div class="item-card">
+                <h4 id="statGemstones">-</h4>
+                <p>Gemstones in catalogue</p>
+            </div>
+
+
+            <div class="item-card">
+                <h4 id="statItems">-</h4>
+                <p>Jewellery items</p>
+            </div>
+
+
+            <div class="item-card">
+                <h4 id="statOrders">-</h4>
+                <p>Orders on record</p>
+            </div>
+
+
+            <div class="item-card">
+                <h4 id="statCustomers">-</h4>
+                <p>Registered customers</p>
+            </div>
+
         </div>
+
     </section>
+
+
+    <!-- =====================================================
+         JEWELLERY CATALOGUE
+    ====================================================== -->
 
     <section id="tab-catalogue" class="panel">
+
         <h2>Jewellery Catalogue</h2>
+
+
         <div id="staffOnly-catalogueForm">
+
             <div class="row">
-                <div><label>Item Code</label><input id="jiCode"></div>
-                <div><label>Item Name</label><input id="jiName"></div>
-                <div><label>Metal Type</label><input id="jiMetal"></div>
+
+                <div>
+                    <label>Item Code</label>
+                    <input id="jiCode">
+                </div>
+
+                <div>
+                    <label>Item Name</label>
+                    <input id="jiName">
+                </div>
+
+                <div>
+                    <label>Metal Type</label>
+                    <input id="jiMetal">
+                </div>
+
             </div>
+
+
             <div class="row">
-                <div><label>Weight (g)</label><input id="jiWeight" type="number" step="0.01"></div>
-                <div><label>Price</label><input id="jiPrice" type="number" step="0.01"></div>
-                <div><label>Stock Qty</label><input id="jiStock" type="number"></div>
+
+                <div>
+                    <label>Weight (g)</label>
+                    <input
+                            id="jiWeight"
+                            type="number"
+                            step="0.01"
+                    >
+                </div>
+
+                <div>
+                    <label>Price</label>
+                    <input
+                            id="jiPrice"
+                            type="number"
+                            step="0.01"
+                    >
+                </div>
+
+                <div>
+                    <label>Stock Qty</label>
+                    <input
+                            id="jiStock"
+                            type="number"
+                    >
+                </div>
+
             </div>
+
+
             <div class="row">
-                <div><label>Category</label><select id="jiCategory"></select></div>
-                <div><label>Gemstone (optional)</label><select id="jiGemstone"><option value="">-- none --</option></select></div>
+
+                <div>
+                    <label>Category</label>
+                    <select id="jiCategory"></select>
+                </div>
+
+                <div>
+                    <label>Gemstone (optional)</label>
+
+                    <select id="jiGemstone">
+                        <option value="">
+                            -- none --
+                        </option>
+                    </select>
+
+                </div>
+
             </div>
+
+
             <input type="hidden" id="jiId">
-            <button class="btn" onclick="saveJewelleryItem()">Save Item</button>
-            <button class="btn secondary" onclick="resetJewelleryForm()">Clear</button>
+
+
+            <button
+                    class="btn"
+                    onclick="saveJewelleryItem()"
+            >
+                Save Item
+            </button>
+
+
+            <button
+                    class="btn secondary"
+                    onclick="resetJewelleryForm()"
+            >
+                Clear
+            </button>
+
         </div>
-        <div id="jewelleryMsg" class="msg"></div>
-        <div id="catalogueGrid" class="card-grid"></div>
+
+
+        <div
+                id="jewelleryMsg"
+                class="msg"
+        ></div>
+
+
+        <div
+                id="catalogueGrid"
+                class="card-grid"
+        ></div>
+
     </section>
+
+
+    <!-- =====================================================
+         GEMSTONES
+    ====================================================== -->
 
     <section id="tab-gemstones" class="panel">
+
         <h2>Gemstones</h2>
+
+
         <div class="row">
-            <div><label>Gem Code</label><input id="gsCode"></div>
-            <div><label>Carat</label><input id="gsCarat" type="number" step="0.01"></div>
-            <div><label>Shape</label><input id="gsShape"></div>
+
+            <div>
+                <label>Gem Code</label>
+                <input id="gsCode">
+            </div>
+
+            <div>
+                <label>Carat</label>
+
+                <input
+                        id="gsCarat"
+                        type="number"
+                        step="0.01"
+                >
+            </div>
+
+            <div>
+                <label>Shape</label>
+                <input id="gsShape">
+            </div>
+
         </div>
+
+
         <div class="row">
-            <div><label>Gem Type</label><select id="gsType"></select></div>
-            <div><label>Gem Color</label><select id="gsColor"></select></div>
-            <div><label>Gem Origin</label><select id="gsOrigin"></select></div>
-            <div><label>Supplier</label><select id="gsSupplier"></select></div>
+
+            <div>
+                <label>Gem Type</label>
+                <select id="gsType"></select>
+            </div>
+
+            <div>
+                <label>Gem Color</label>
+                <select id="gsColor"></select>
+            </div>
+
+            <div>
+                <label>Gem Origin</label>
+                <select id="gsOrigin"></select>
+            </div>
+
+            <div>
+                <label>Supplier</label>
+                <select id="gsSupplier"></select>
+            </div>
+
         </div>
+
+
         <label>Description</label>
+
         <input id="gsDescription">
-        <input type="hidden" id="gsId">
-        <button class="btn" onclick="saveGemstone()">Save Gemstone</button>
-        <button class="btn secondary" onclick="resetGemstoneForm()">Clear</button>
-        <div id="gemstoneMsg" class="msg"></div>
+
+
+        <input
+                type="hidden"
+                id="gsId"
+        >
+
+
+        <button
+                class="btn"
+                onclick="saveGemstone()"
+        >
+            Save Gemstone
+        </button>
+
+
+        <button
+                class="btn secondary"
+                onclick="resetGemstoneForm()"
+        >
+            Clear
+        </button>
+
+
+        <div
+                id="gemstoneMsg"
+                class="msg"
+        ></div>
+
+
         <table>
-            <thead><tr><th>Code</th><th>Type</th><th>Color</th><th>Origin</th><th>Carat</th><th>Shape</th><th>Supplier</th><th>Actions</th></tr></thead>
+
+            <thead>
+
+            <tr>
+                <th>Code</th>
+                <th>Type</th>
+                <th>Color</th>
+                <th>Origin</th>
+                <th>Carat</th>
+                <th>Shape</th>
+                <th>Supplier</th>
+                <th>Actions</th>
+            </tr>
+
+            </thead>
+
+
             <tbody id="gemstoneTbl"></tbody>
+
         </table>
+
     </section>
+
+
+    <!-- =====================================================
+         REFERENCE DATA
+    ====================================================== -->
 
     <section id="tab-reference" class="panel">
+
         <h2>Reference Data</h2>
+
+
         <div class="two-col">
+
+
             <div>
+
                 <h4>Gem Types</h4>
-                <div class="row"><div><input id="newGemType" placeholder="e.g. Ruby"></div></div>
-                <button class="btn small" onclick="addLookup('gem-types','newGemType','typeName','gemTypeTbl')">Add</button>
-                <table><tbody id="gemTypeTbl"></tbody></table>
+
+                <div class="row">
+
+                    <div>
+                        <input
+                                id="newGemType"
+                                placeholder="e.g. Ruby"
+                        >
+                    </div>
+
+                </div>
+
+
+                <button
+                        class="btn small"
+                        onclick="addLookup('gem-types','newGemType','typeName','gemTypeTbl')"
+                >
+                    Add
+                </button>
+
+
+                <table>
+                    <tbody id="gemTypeTbl"></tbody>
+                </table>
+
             </div>
+
+
             <div>
+
                 <h4>Gem Colors</h4>
-                <div class="row"><div><input id="newGemColor" placeholder="e.g. Blood Red"></div></div>
-                <button class="btn small" onclick="addLookup('gem-colors','newGemColor','colorName','gemColorTbl')">Add</button>
-                <table><tbody id="gemColorTbl"></tbody></table>
+
+                <div class="row">
+
+                    <div>
+                        <input
+                                id="newGemColor"
+                                placeholder="e.g. Blood Red"
+                        >
+                    </div>
+
+                </div>
+
+
+                <button
+                        class="btn small"
+                        onclick="addLookup('gem-colors','newGemColor','colorName','gemColorTbl')"
+                >
+                    Add
+                </button>
+
+
+                <table>
+                    <tbody id="gemColorTbl"></tbody>
+                </table>
+
             </div>
+
+
             <div>
+
                 <h4>Gem Origins</h4>
-                <div class="row"><div><input id="newGemOrigin" placeholder="e.g. Sri Lanka"></div></div>
-                <button class="btn small" onclick="addLookup('gem-origins','newGemOrigin','originName','gemOriginTbl')">Add</button>
-                <table><tbody id="gemOriginTbl"></tbody></table>
+
+                <div class="row">
+
+                    <div>
+                        <input
+                                id="newGemOrigin"
+                                placeholder="e.g. Sri Lanka"
+                        >
+                    </div>
+
+                </div>
+
+
+                <button
+                        class="btn small"
+                        onclick="addLookup('gem-origins','newGemOrigin','originName','gemOriginTbl')"
+                >
+                    Add
+                </button>
+
+
+                <table>
+                    <tbody id="gemOriginTbl"></tbody>
+                </table>
+
             </div>
+
+
             <div>
+
                 <h4>Jewellery Categories</h4>
-                <div class="row"><div><input id="newCategory" placeholder="e.g. Ring"></div></div>
-                <button class="btn small" onclick="addLookup('categories','newCategory','categoryName','categoryTbl')">Add</button>
-                <table><tbody id="categoryTbl"></tbody></table>
+
+                <div class="row">
+
+                    <div>
+                        <input
+                                id="newCategory"
+                                placeholder="e.g. Ring"
+                        >
+                    </div>
+
+                </div>
+
+
+                <button
+                        class="btn small"
+                        onclick="addLookup('categories','newCategory','categoryName','categoryTbl')"
+                >
+                    Add
+                </button>
+
+
+                <table>
+                    <tbody id="categoryTbl"></tbody>
+                </table>
+
             </div>
+
         </div>
-        <h4 style="margin-top:24px;">Suppliers</h4>
+
+
+        <h4 style="margin-top:30px;">
+            Suppliers
+        </h4>
+
+
         <div class="row">
-            <div><label>Name</label><input id="supName"></div>
-            <div><label>Contact Person</label><input id="supContact"></div>
-            <div><label>Phone</label><input id="supPhone"></div>
-            <div><label>Email</label><input id="supEmail"></div>
+
+            <div>
+                <label>Name</label>
+                <input id="supName">
+            </div>
+
+            <div>
+                <label>Contact Person</label>
+                <input id="supContact">
+            </div>
+
+            <div>
+                <label>Phone</label>
+                <input id="supPhone">
+            </div>
+
+            <div>
+                <label>Email</label>
+                <input id="supEmail">
+            </div>
+
         </div>
-        <label>Address</label><input id="supAddress">
-        <button class="btn" onclick="addSupplier()">Add Supplier</button>
+
+
+        <label>Address</label>
+
+        <input id="supAddress">
+
+
+        <button
+                class="btn"
+                onclick="addSupplier()"
+        >
+            Add Supplier
+        </button>
+
+
         <table>
-            <thead><tr><th>Name</th><th>Contact</th><th>Phone</th><th>Email</th><th>Actions</th></tr></thead>
+
+            <thead>
+
+            <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+
+            </thead>
+
+
             <tbody id="supplierTbl"></tbody>
+
         </table>
+
     </section>
+
+
+    <!-- =====================================================
+         CUSTOMERS
+    ====================================================== -->
 
     <section id="tab-customers" class="panel">
+
         <h2>Customers</h2>
-        <div class="row"><div><input id="customerSearch" placeholder="Search by name"></div></div>
-        <button class="btn small" onclick="loadCustomers()">Search</button>
+
+
+        <div class="row">
+
+            <div>
+
+                <input
+                        id="customerSearch"
+                        placeholder="Search by name"
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+                class="btn small"
+                onclick="loadCustomers()"
+        >
+            Search
+        </button>
+
+
         <table>
-            <thead><tr><th>ID</th><th>Full Name</th><th>Email</th><th>Phone</th><th>Address</th></tr></thead>
+
+            <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+            </tr>
+
+            </thead>
+
+
             <tbody id="customerTbl"></tbody>
+
         </table>
+
     </section>
+
+
+    <!-- =====================================================
+         ORDERS
+    ====================================================== -->
 
     <section id="tab-orders" class="panel">
+
         <h2>Orders</h2>
+
+
         <div id="customerOrderBox">
+
             <h4>Place a New Order</h4>
+
+
             <div id="orderLines"></div>
-            <button class="btn small" onclick="addOrderLine()">+ Add Item Line</button>
+
+
+            <button
+                    class="btn small"
+                    onclick="addOrderLine()"
+            >
+                + Add Item Line
+            </button>
+
+
             <br>
-            <button class="btn" onclick="placeOrder()">Place Order</button>
-            <div id="orderMsg" class="msg"></div>
+
+
+            <button
+                    class="btn"
+                    onclick="placeOrder()"
+            >
+                Place Order
+            </button>
+
+
+            <div
+                    id="orderMsg"
+                    class="msg"
+            ></div>
+
         </div>
+
+
         <table>
-            <thead><tr><th>Order #</th><th>Customer</th><th>Date</th><th>Status</th><th>Total</th><th>Action</th></tr></thead>
+
+            <thead>
+
+            <tr>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+
+            </thead>
+
+
             <tbody id="orderTbl"></tbody>
+
         </table>
+
     </section>
+
 </main>
 
+
 <script>
+
     const API = "";
 
-    function getToken(){ return localStorage.getItem("JWT"); }
-    function getRole(){ return localStorage.getItem("role"); }
-    function getUsername(){ return localStorage.getItem("username"); }
-    function getCustomerId(){ return localStorage.getItem("customerId"); }
-    function authHeaders(){ return { "Authorization": "Bearer " + getToken() }; }
-    function isLoggedIn(){ return !!getToken(); }
+
+    function getToken(){
+        return localStorage.getItem("JWT");
+    }
+
+
+    function getRole(){
+        return localStorage.getItem("role");
+    }
+
+
+    function getUsername(){
+        return localStorage.getItem("username");
+    }
+
+
+    function getCustomerId(){
+        return localStorage.getItem("customerId");
+    }
+
+
+    function authHeaders(){
+        return {
+            "Authorization": "Bearer " + getToken()
+        };
+    }
+
+
+    function isLoggedIn(){
+        return !!getToken();
+    }
+
 
     /* Guard: no token -> bounce straight to the dedicated login page */
+
     if (!isLoggedIn()) {
         window.location.href = "login.html";
     }
 
+
     $('nav button[data-tab]').on('click', function(){
+
         showTab($(this).data('tab'));
+
     });
+
 
     function showTab(tab){
+
         $('.panel').removeClass('active');
+
         $('#'+tab).addClass('active');
+
         $('nav button[data-tab]').removeClass('active');
+
         $('nav button[data-tab="'+tab+'"]').addClass('active');
 
-        if(tab === 'tab-dashboard') loadDashboard();
-        if(tab === 'tab-catalogue') loadCatalogue();
-        if(tab === 'tab-gemstones') loadGemstones();
-        if(tab === 'tab-reference') loadReferenceData();
-        if(tab === 'tab-customers') loadCustomers();
-        if(tab === 'tab-orders') loadOrders();
+
+        if(tab === 'tab-dashboard')
+            loadDashboard();
+
+        if(tab === 'tab-catalogue')
+            loadCatalogue();
+
+        if(tab === 'tab-gemstones')
+            loadGemstones();
+
+        if(tab === 'tab-reference')
+            loadReferenceData();
+
+        if(tab === 'tab-customers')
+            loadCustomers();
+
+        if(tab === 'tab-orders')
+            loadOrders();
+
     }
+
 
     function applyRoleVisibility(){
-        const role = getRole();
-        $('#whoami').text(getUsername()+" ("+role+")");
 
-        const staffTabs = ['tab-gemstones','tab-reference','tab-customers'];
+        const role = getRole();
+
+        $('#whoami').text(
+            getUsername()+" ("+role+")"
+        );
+
+
+        const staffTabs = [
+            'tab-gemstones',
+            'tab-reference',
+            'tab-customers'
+        ];
+
+
         staffTabs.forEach(t => {
-            $('nav button[data-tab="'+t+'"]').toggle(role === 'ADMIN' || role === 'STAFF');
+
+            $('nav button[data-tab="'+t+'"]').toggle(
+                role === 'ADMIN' ||
+                role === 'STAFF'
+            );
+
         });
 
-        $('#staffOnly-catalogueForm').toggle(role === 'ADMIN' || role === 'STAFF');
-        $('#customerOrderBox').toggle(role === 'CUSTOMER');
+
+        $('#staffOnly-catalogueForm').toggle(
+            role === 'ADMIN' ||
+            role === 'STAFF'
+        );
+
+
+        $('#customerOrderBox').toggle(
+            role === 'CUSTOMER'
+        );
+
     }
+
 
     $('#logoutBtn').on('click', function(){
+
         localStorage.clear();
+
         window.location.href = "login.html";
+
     });
+
 
     /* ---------------- DASHBOARD ---------------- */
+
     function loadDashboard(){
-        $('#dashboardWelcome').text("Logged in as "+getUsername()+" — role: "+getRole());
-        $.ajax({url: API+"/v1/jewellery-items", type:"GET", success:r=>$('#statItems').text(r.body.length)});
-        if(getRole()==='ADMIN' || getRole()==='STAFF'){
-            $.ajax({url: API+"/v1/gemstones", type:"GET", headers:authHeaders(), success:r=>$('#statGemstones').text(r.body.length)});
-            $.ajax({url: API+"/v1/customers", type:"GET", headers:authHeaders(), success:r=>$('#statCustomers').text(r.body.length)});
-            $.ajax({url: API+"/v1/orders", type:"GET", headers:authHeaders(), success:r=>$('#statOrders').text(r.body.length)});
-        } else {
-            $('#statGemstones').text('—');
-            $('#statCustomers').text('—');
-            $.ajax({url: API+"/v1/orders/customer/"+getCustomerId(), type:"GET", headers:authHeaders(),
-                success:r=>$('#statOrders').text(r.body ? r.body.length : 0)});
+
+        $('#dashboardWelcome').text(
+            "Logged in as "+
+            getUsername()+
+            " — role: "+
+            getRole()
+        );
+
+
+        $.ajax({
+
+            url: API+"/v1/jewellery-items",
+
+            type:"GET",
+
+            success:r =>
+                $('#statItems').text(
+                    r.body.length
+                )
+
+        });
+
+
+        if(
+            getRole()==='ADMIN' ||
+            getRole()==='STAFF'
+        ){
+
+            $.ajax({
+
+                url: API+"/v1/gemstones",
+
+                type:"GET",
+
+                headers:authHeaders(),
+
+                success:r =>
+                    $('#statGemstones').text(
+                        r.body.length
+                    )
+
+            });
+
+
+            $.ajax({
+
+                url: API+"/v1/customers",
+
+                type:"GET",
+
+                headers:authHeaders(),
+
+                success:r =>
+                    $('#statCustomers').text(
+                        r.body.length
+                    )
+
+            });
+
+
+            $.ajax({
+
+                url: API+"/v1/orders",
+
+                type:"GET",
+
+                headers:authHeaders(),
+
+                success:r =>
+                    $('#statOrders').text(
+                        r.body.length
+                    )
+
+            });
+
         }
+
+        else{
+
+            $('#statGemstones').text('—');
+
+            $('#statCustomers').text('—');
+
+
+            $.ajax({
+
+                url:
+                    API+
+                    "/v1/orders/customer/"+
+                    getCustomerId(),
+
+                type:"GET",
+
+                headers:authHeaders(),
+
+                success:r =>
+                    $('#statOrders').text(
+                        r.body ?
+                            r.body.length :
+                            0
+                    )
+
+            });
+
+        }
+
     }
+
 
     /* ---------------- CATALOGUE ---------------- */
+
     function loadCatalogue(){
-        populateSelect('/v1/categories', 'jiCategory', 'categoryId', 'categoryName');
-        populateSelect('/v1/gemstones', 'jiGemstone', 'gemstoneId', 'gemCode', true);
+
+        populateSelect(
+            '/v1/categories',
+            'jiCategory',
+            'categoryId',
+            'categoryName'
+        );
+
+
+        populateSelect(
+            '/v1/gemstones',
+            'jiGemstone',
+            'gemstoneId',
+            'gemCode',
+            true
+        );
+
 
         $.ajax({
-            url: API+"/v1/jewellery-items", type:"GET",
-            success: function(res){
+
+            url:
+                API+
+                "/v1/jewellery-items",
+
+            type:"GET",
+
+            success:function(res){
+
                 let html = "";
+
+
                 res.body.forEach(it => {
-                    html += `<div class="item-card">
-                    <h4>${it.itemName} <span class="badge">${it.itemCode}</span></h4>
-                    <p>Category: ${it.category ? it.category.categoryName : '-'}</p>
-                    <p>Metal: ${it.metalType} | Weight: ${it.weight}g</p>
-                    <p>Price: ${it.price} | Stock: ${it.stockQuantity}</p>
-                    <div id="cat-actions-${it.itemId}"></div>
-                </div>`;
+
+                    html += `
+                    <div class="item-card">
+
+                        <h4>
+                            ${it.itemName}
+
+                            <span class="badge">
+                                ${it.itemCode}
+                            </span>
+                        </h4>
+
+                        <p>
+                            Category:
+                            ${it.category ?
+                        it.category.categoryName :
+                        '-'}
+                        </p>
+
+                        <p>
+                            Metal:
+                            ${it.metalType}
+                            |
+                            Weight:
+                            ${it.weight}g
+                        </p>
+
+                        <p>
+                            Price:
+                            ${it.price}
+                            |
+                            Stock:
+                            ${it.stockQuantity}
+                        </p>
+
+                        <div id="cat-actions-${it.itemId}">
+                        </div>
+
+                    </div>
+                    `;
+
                 });
+
+
                 $('#catalogueGrid').html(html);
 
+
                 const role = getRole();
+
+
                 res.body.forEach(it => {
+
                     let actions = "";
-                    if(role === 'ADMIN' || role === 'STAFF'){
-                        actions = `<button class="btn small" onclick='editJewelleryItem(${JSON.stringify(it)})'>Edit</button>
-                               <button class="btn small" onclick="deleteJewelleryItem(${it.itemId})">Delete</button>`;
+
+
+                    if(
+                        role === 'ADMIN' ||
+                        role === 'STAFF'
+                    ){
+
+                        actions = `
+                            <button
+                                class="btn small"
+                                onclick='editJewelleryItem(${JSON.stringify(it)})'
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                class="btn small"
+                                onclick="deleteJewelleryItem(${it.itemId})"
+                            >
+                                Delete
+                            </button>
+                        `;
+
                     }
-                    $('#cat-actions-'+it.itemId).html(actions);
+
+
+                    $('#cat-actions-'+it.itemId)
+                        .html(actions);
+
                 });
+
             }
+
         });
+
     }
+
 
     function resetJewelleryForm(){
-        $('#jiId,#jiCode,#jiName,#jiMetal,#jiWeight,#jiPrice,#jiStock').val('');
+
+        $('#jiId,#jiCode,#jiName,#jiMetal,#jiWeight,#jiPrice,#jiStock')
+            .val('');
+
         $('#jiGemstone').val('');
+
     }
+
 
     function editJewelleryItem(it){
+
         $('#jiId').val(it.itemId);
+
         $('#jiCode').val(it.itemCode);
+
         $('#jiName').val(it.itemName);
+
         $('#jiMetal').val(it.metalType);
+
         $('#jiWeight').val(it.weight);
+
         $('#jiPrice').val(it.price);
+
         $('#jiStock').val(it.stockQuantity);
-        $('#jiCategory').val(it.category ? it.category.categoryId : '');
-        $('#jiGemstone').val(it.gemstone ? it.gemstone.gemstoneId : '');
+
+        $('#jiCategory').val(
+            it.category ?
+                it.category.categoryId :
+                ''
+        );
+
+        $('#jiGemstone').val(
+            it.gemstone ?
+                it.gemstone.gemstoneId :
+                ''
+        );
+
+
         showTab('tab-catalogue');
+
     }
+
 
     function saveJewelleryItem(){
+
         const id = $('#jiId').val();
+
+
         const payload = {
-            itemCode: $('#jiCode').val(), itemName: $('#jiName').val(), metalType: $('#jiMetal').val(),
-            weight: parseFloat($('#jiWeight').val() || 0), price: parseFloat($('#jiPrice').val() || 0),
-            stockQuantity: parseInt($('#jiStock').val() || 0),
-            category: { categoryId: $('#jiCategory').val() },
-            gemstone: $('#jiGemstone').val() ? { gemstoneId: $('#jiGemstone').val() } : null
+
+            itemCode:
+                $('#jiCode').val(),
+
+            itemName:
+                $('#jiName').val(),
+
+            metalType:
+                $('#jiMetal').val(),
+
+            weight:
+                parseFloat(
+                    $('#jiWeight').val() || 0
+                ),
+
+            price:
+                parseFloat(
+                    $('#jiPrice').val() || 0
+                ),
+
+            stockQuantity:
+                parseInt(
+                    $('#jiStock').val() || 0
+                ),
+
+            category:{
+                categoryId:
+                    $('#jiCategory').val()
+            },
+
+            gemstone:
+                $('#jiGemstone').val()
+                    ?
+                    {
+                        gemstoneId:
+                            $('#jiGemstone').val()
+                    }
+                    :
+                    null
+
         };
-        if(id) payload.itemId = id;
+
+
+        if(id)
+            payload.itemId = id;
+
+
         $.ajax({
-            url: API+"/v1/jewellery-items", type: id ? "PUT" : "POST",
-            contentType: "application/json", data: JSON.stringify(payload), headers: authHeaders(),
-            success: function(res){
-                $('#jewelleryMsg').removeClass(res.status===0?'err':'ok').addClass(res.status===0?'ok':'err').text(res.message);
-                resetJewelleryForm(); loadCatalogue();
+
+            url:
+                API+
+                "/v1/jewellery-items",
+
+            type:
+                id ?
+                    "PUT" :
+                    "POST",
+
+            contentType:
+                "application/json",
+
+            data:
+                JSON.stringify(payload),
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
+                $('#jewelleryMsg')
+                    .removeClass(
+                        res.status===0 ?
+                            'err' :
+                            'ok'
+                    )
+                    .addClass(
+                        res.status===0 ?
+                            'ok' :
+                            'err'
+                    )
+                    .text(res.message);
+
+
+                resetJewelleryForm();
+
+                loadCatalogue();
+
             }
+
         });
+
     }
+
 
     function deleteJewelleryItem(id){
-        $.ajax({ url: API+"/v1/jewellery-items/"+id, type:"DELETE", headers: authHeaders(), success: loadCatalogue });
+
+        $.ajax({
+
+            url:
+                API+
+                "/v1/jewellery-items/"+
+                id,
+
+            type:"DELETE",
+
+            headers:
+                authHeaders(),
+
+            success:
+            loadCatalogue
+
+        });
+
     }
+
 
     /* ---------------- GEMSTONES ---------------- */
+
     function loadGemstones(){
-        populateSelect('/v1/gem-types', 'gsType', 'gemTypeId', 'typeName');
-        populateSelect('/v1/gem-colors', 'gsColor', 'gemColorId', 'colorName');
-        populateSelect('/v1/gem-origins', 'gsOrigin', 'gemOriginId', 'originName');
-        populateSelect('/v1/suppliers', 'gsSupplier', 'supplierId', 'name', true);
+
+        populateSelect(
+            '/v1/gem-types',
+            'gsType',
+            'gemTypeId',
+            'typeName'
+        );
+
+
+        populateSelect(
+            '/v1/gem-colors',
+            'gsColor',
+            'gemColorId',
+            'colorName'
+        );
+
+
+        populateSelect(
+            '/v1/gem-origins',
+            'gsOrigin',
+            'gemOriginId',
+            'originName'
+        );
+
+
+        populateSelect(
+            '/v1/suppliers',
+            'gsSupplier',
+            'supplierId',
+            'name',
+            true
+        );
+
 
         $.ajax({
-            url: API+"/v1/gemstones", type:"GET", headers: authHeaders(),
-            success: function(res){
+
+            url:
+                API+
+                "/v1/gemstones",
+
+            type:"GET",
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
                 let html = "";
+
+
                 res.body.forEach(g => {
-                    html += `<tr>
-                    <td>${g.gemCode}</td><td>${g.gemType ? g.gemType.typeName : ''}</td>
-                    <td>${g.gemColor ? g.gemColor.colorName : ''}</td><td>${g.gemOrigin ? g.gemOrigin.originName : ''}</td>
-                    <td>${g.carat}</td><td>${g.shape || ''}</td><td>${g.supplier ? g.supplier.name : ''}</td>
-                    <td>
-                        <button class="btn small" onclick='editGemstone(${JSON.stringify(g)})'>Edit</button>
-                        <button class="btn small" onclick="deleteGemstone(${g.gemstoneId})">Delete</button>
-                    </td>
-                </tr>`;
+
+                    html += `
+                    <tr>
+
+                        <td>${g.gemCode}</td>
+
+                        <td>
+                            ${g.gemType ?
+                        g.gemType.typeName :
+                        ''}
+                        </td>
+
+                        <td>
+                            ${g.gemColor ?
+                        g.gemColor.colorName :
+                        ''}
+                        </td>
+
+                        <td>
+                            ${g.gemOrigin ?
+                        g.gemOrigin.originName :
+                        ''}
+                        </td>
+
+                        <td>${g.carat}</td>
+
+                        <td>${g.shape || ''}</td>
+
+                        <td>
+                            ${g.supplier ?
+                        g.supplier.name :
+                        ''}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn small"
+                                onclick='editGemstone(${JSON.stringify(g)})'
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                class="btn small"
+                                onclick="deleteGemstone(${g.gemstoneId})"
+                            >
+                                Delete
+                            </button>
+
+                        </td>
+
+                    </tr>
+                    `;
+
                 });
+
+
                 $('#gemstoneTbl').html(html);
+
             }
+
         });
+
     }
+
 
     function resetGemstoneForm(){
-        $('#gsId,#gsCode,#gsCarat,#gsShape,#gsDescription').val('');
+
+        $('#gsId,#gsCode,#gsCarat,#gsShape,#gsDescription')
+            .val('');
+
     }
+
 
     function editGemstone(g){
-        $('#gsId').val(g.gemstoneId); $('#gsCode').val(g.gemCode); $('#gsCarat').val(g.carat);
-        $('#gsShape').val(g.shape); $('#gsDescription').val(g.description);
-        $('#gsType').val(g.gemType ? g.gemType.gemTypeId : '');
-        $('#gsColor').val(g.gemColor ? g.gemColor.gemColorId : '');
-        $('#gsOrigin').val(g.gemOrigin ? g.gemOrigin.gemOriginId : '');
-        $('#gsSupplier').val(g.supplier ? g.supplier.supplierId : '');
+
+        $('#gsId').val(g.gemstoneId);
+
+        $('#gsCode').val(g.gemCode);
+
+        $('#gsCarat').val(g.carat);
+
+        $('#gsShape').val(g.shape);
+
+        $('#gsDescription').val(g.description);
+
+
+        $('#gsType').val(
+            g.gemType ?
+                g.gemType.gemTypeId :
+                ''
+        );
+
+
+        $('#gsColor').val(
+            g.gemColor ?
+                g.gemColor.gemColorId :
+                ''
+        );
+
+
+        $('#gsOrigin').val(
+            g.gemOrigin ?
+                g.gemOrigin.gemOriginId :
+                ''
+        );
+
+
+        $('#gsSupplier').val(
+            g.supplier ?
+                g.supplier.supplierId :
+                ''
+        );
+
     }
+
 
     function saveGemstone(){
+
         const id = $('#gsId').val();
+
+
         const payload = {
-            gemCode: $('#gsCode').val(), carat: parseFloat($('#gsCarat').val() || 0),
-            shape: $('#gsShape').val(), description: $('#gsDescription').val(),
-            gemType: { gemTypeId: $('#gsType').val() }, gemColor: { gemColorId: $('#gsColor').val() },
-            gemOrigin: { gemOriginId: $('#gsOrigin').val() },
-            supplier: $('#gsSupplier').val() ? { supplierId: $('#gsSupplier').val() } : null
+
+            gemCode:
+                $('#gsCode').val(),
+
+            carat:
+                parseFloat(
+                    $('#gsCarat').val() || 0
+                ),
+
+            shape:
+                $('#gsShape').val(),
+
+            description:
+                $('#gsDescription').val(),
+
+            gemType:{
+                gemTypeId:
+                    $('#gsType').val()
+            },
+
+            gemColor:{
+                gemColorId:
+                    $('#gsColor').val()
+            },
+
+            gemOrigin:{
+                gemOriginId:
+                    $('#gsOrigin').val()
+            },
+
+            supplier:
+                $('#gsSupplier').val()
+                    ?
+                    {
+                        supplierId:
+                            $('#gsSupplier').val()
+                    }
+                    :
+                    null
+
         };
-        if(id) payload.gemstoneId = id;
+
+
+        if(id)
+            payload.gemstoneId = id;
+
+
         $.ajax({
-            url: API+"/v1/gemstones", type: id ? "PUT" : "POST",
-            contentType:"application/json", data: JSON.stringify(payload), headers: authHeaders(),
-            success: function(res){
-                $('#gemstoneMsg').removeClass(res.status===0?'err':'ok').addClass(res.status===0?'ok':'err').text(res.message);
-                resetGemstoneForm(); loadGemstones();
+
+            url:
+                API+
+                "/v1/gemstones",
+
+            type:
+                id ?
+                    "PUT" :
+                    "POST",
+
+            contentType:
+                "application/json",
+
+            data:
+                JSON.stringify(payload),
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
+                $('#gemstoneMsg')
+                    .removeClass(
+                        res.status===0 ?
+                            'err' :
+                            'ok'
+                    )
+                    .addClass(
+                        res.status===0 ?
+                            'ok' :
+                            'err'
+                    )
+                    .text(res.message);
+
+
+                resetGemstoneForm();
+
+                loadGemstones();
+
             }
+
         });
+
     }
+
 
     function deleteGemstone(id){
-        $.ajax({ url: API+"/v1/gemstones/"+id, type:"DELETE", headers: authHeaders(), success: loadGemstones });
+
+        $.ajax({
+
+            url:
+                API+
+                "/v1/gemstones/"+
+                id,
+
+            type:"DELETE",
+
+            headers:
+                authHeaders(),
+
+            success:
+            loadGemstones
+
+        });
+
     }
+
 
     /* ---------------- REFERENCE DATA ---------------- */
+
     function loadReferenceData(){
-        loadLookupTable('/v1/gem-types', 'gemTypeTbl', 'gemTypeId', 'typeName', 'gem-types');
-        loadLookupTable('/v1/gem-colors', 'gemColorTbl', 'gemColorId', 'colorName', 'gem-colors');
-        loadLookupTable('/v1/gem-origins', 'gemOriginTbl', 'gemOriginId', 'originName', 'gem-origins');
-        loadLookupTable('/v1/categories', 'categoryTbl', 'categoryId', 'categoryName', 'categories');
+
+        loadLookupTable(
+            '/v1/gem-types',
+            'gemTypeTbl',
+            'gemTypeId',
+            'typeName',
+            'gem-types'
+        );
+
+
+        loadLookupTable(
+            '/v1/gem-colors',
+            'gemColorTbl',
+            'gemColorId',
+            'colorName',
+            'gem-colors'
+        );
+
+
+        loadLookupTable(
+            '/v1/gem-origins',
+            'gemOriginTbl',
+            'gemOriginId',
+            'originName',
+            'gem-origins'
+        );
+
+
+        loadLookupTable(
+            '/v1/categories',
+            'categoryTbl',
+            'categoryId',
+            'categoryName',
+            'categories'
+        );
+
 
         $.ajax({
-            url: API+"/v1/suppliers", type:"GET", headers: authHeaders(),
-            success: function(res){
+
+            url:
+                API+
+                "/v1/suppliers",
+
+            type:"GET",
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
                 let html = "";
+
+
                 res.body.forEach(s => {
-                    html += `<tr><td>${s.name}</td><td>${s.contactPerson||''}</td><td>${s.phone||''}</td><td>${s.email||''}</td>
-                    <td><button class="btn small" onclick="deleteSupplier(${s.supplierId})">Delete</button></td></tr>`;
+
+                    html += `
+                    <tr>
+
+                        <td>${s.name}</td>
+
+                        <td>
+                            ${s.contactPerson || ''}
+                        </td>
+
+                        <td>
+                            ${s.phone || ''}
+                        </td>
+
+                        <td>
+                            ${s.email || ''}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn small"
+                                onclick="deleteSupplier(${s.supplierId})"
+                            >
+                                Delete
+                            </button>
+
+                        </td>
+
+                    </tr>
+                    `;
+
                 });
+
+
                 $('#supplierTbl').html(html);
+
             }
+
         });
+
     }
 
-    function loadLookupTable(url, tblId, idField, nameField, endpoint){
+
+    function loadLookupTable(
+        url,
+        tblId,
+        idField,
+        nameField,
+        endpoint
+    ){
+
         $.ajax({
-            url: API+url, type:"GET", headers: authHeaders(),
-            success: function(res){
+
+            url:
+                API+
+                url,
+
+            type:"GET",
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
                 let html = "";
+
+
                 res.body.forEach(row => {
-                    html += `<tr><td>${row[nameField]}</td>
-                    <td><button class="btn small" onclick="deleteLookup('${endpoint}',${row[idField]})">Delete</button></td></tr>`;
+
+                    html += `
+                    <tr>
+
+                        <td>
+                            ${row[nameField]}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn small"
+                                onclick="deleteLookup('${endpoint}',${row[idField]})"
+                            >
+                                Delete
+                            </button>
+
+                        </td>
+
+                    </tr>
+                    `;
+
                 });
+
+
                 $('#'+tblId).html(html);
+
             }
+
         });
+
     }
 
-    function addLookup(endpoint, inputId, fieldName, tblId){
-        const val = $('#'+inputId).val().trim();
-        if(!val) return;
-        const payload = {}; payload[fieldName] = val;
+
+    function addLookup(
+        endpoint,
+        inputId,
+        fieldName,
+        tblId
+    ){
+
+        const val =
+            $('#'+inputId)
+                .val()
+                .trim();
+
+
+        if(!val)
+            return;
+
+
+        const payload = {};
+
+        payload[fieldName] = val;
+
+
         $.ajax({
-            url: API+"/v1/"+endpoint, type:"POST", contentType:"application/json",
-            data: JSON.stringify(payload), headers: authHeaders(),
-            success: function(){ $('#'+inputId).val(''); loadReferenceData(); }
+
+            url:
+                API+
+                "/v1/"+
+                endpoint,
+
+            type:"POST",
+
+            contentType:
+                "application/json",
+
+            data:
+                JSON.stringify(payload),
+
+            headers:
+                authHeaders(),
+
+            success:function(){
+
+                $('#'+inputId).val('');
+
+                loadReferenceData();
+
+            }
+
         });
+
     }
 
-    function deleteLookup(endpoint, id){
-        $.ajax({ url: API+"/v1/"+endpoint+"/"+id, type:"DELETE", headers: authHeaders(), success: loadReferenceData });
+
+    function deleteLookup(
+        endpoint,
+        id
+    ){
+
+        $.ajax({
+
+            url:
+                API+
+                "/v1/"+
+                endpoint+
+                "/"+
+                id,
+
+            type:"DELETE",
+
+            headers:
+                authHeaders(),
+
+            success:
+            loadReferenceData
+
+        });
+
     }
+
 
     function addSupplier(){
+
         const payload = {
-            name: $('#supName').val(), contactPerson: $('#supContact').val(),
-            phone: $('#supPhone').val(), email: $('#supEmail').val(), address: $('#supAddress').val()
+
+            name:
+                $('#supName').val(),
+
+            contactPerson:
+                $('#supContact').val(),
+
+            phone:
+                $('#supPhone').val(),
+
+            email:
+                $('#supEmail').val(),
+
+            address:
+                $('#supAddress').val()
+
         };
+
+
         $.ajax({
-            url: API+"/v1/suppliers", type:"POST", contentType:"application/json",
-            data: JSON.stringify(payload), headers: authHeaders(),
-            success: function(){ $('#supName,#supContact,#supPhone,#supEmail,#supAddress').val(''); loadReferenceData(); }
+
+            url:
+                API+
+                "/v1/suppliers",
+
+            type:"POST",
+
+            contentType:
+                "application/json",
+
+            data:
+                JSON.stringify(payload),
+
+            headers:
+                authHeaders(),
+
+            success:function(){
+
+                $('#supName,#supContact,#supPhone,#supEmail,#supAddress')
+                    .val('');
+
+                loadReferenceData();
+
+            }
+
         });
+
     }
+
 
     function deleteSupplier(id){
-        $.ajax({ url: API+"/v1/suppliers/"+id, type:"DELETE", headers: authHeaders(), success: loadReferenceData });
+
+        $.ajax({
+
+            url:
+                API+
+                "/v1/suppliers/"+
+                id,
+
+            type:"DELETE",
+
+            headers:
+                authHeaders(),
+
+            success:
+            loadReferenceData
+
+        });
+
     }
+
 
     /* ---------------- CUSTOMERS ---------------- */
+
     function loadCustomers(){
-        const search = $('#customerSearch').val();
+
+        const search =
+            $('#customerSearch').val();
+
+
         $.ajax({
-            url: API+"/v1/customers"+(search ? "?search="+encodeURIComponent(search) : ""),
-            type:"GET", headers: authHeaders(),
-            success: function(res){
+
+            url:
+                API+
+                "/v1/customers"+
+                (
+                    search
+                        ?
+                        "?search="+
+                        encodeURIComponent(search)
+                        :
+                        ""
+                ),
+
+            type:"GET",
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
                 let html = "";
+
+
                 res.body.forEach(c => {
-                    html += `<tr><td>${c.customerId}</td><td>${c.fullName||''}</td><td>${c.email||''}</td>
-                    <td>${c.phone||''}</td><td>${c.address||''}</td></tr>`;
+
+                    html += `
+                    <tr>
+
+                        <td>
+                            ${c.customerId}
+                        </td>
+
+                        <td>
+                            ${c.fullName || ''}
+                        </td>
+
+                        <td>
+                            ${c.email || ''}
+                        </td>
+
+                        <td>
+                            ${c.phone || ''}
+                        </td>
+
+                        <td>
+                            ${c.address || ''}
+                        </td>
+
+                    </tr>
+                    `;
+
                 });
+
+
                 $('#customerTbl').html(html);
+
             }
+
         });
+
     }
+
 
     /* ---------------- ORDERS ---------------- */
+
     let orderLineCount = 0;
 
+
     function addOrderLine(){
+
         orderLineCount++;
-        const lineId = 'line-'+orderLineCount;
+
+
+        const lineId =
+            'line-'+
+            orderLineCount;
+
+
         $('#orderLines').append(`
-        <div class="row" id="${lineId}">
-            <div><label>Jewellery Item</label><select class="orderItemSelect"></select></div>
-            <div><label>Quantity</label><input type="number" class="orderQty" value="1" min="1"></div>
+
+        <div
+            class="row"
+            id="${lineId}"
+        >
+
+            <div>
+
+                <label>
+                    Jewellery Item
+                </label>
+
+                <select
+                    class="orderItemSelect"
+                ></select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    class="orderQty"
+                    value="1"
+                    min="1"
+                >
+
+            </div>
+
         </div>
-    `);
-        populateSelect('/v1/jewellery-items', null, 'itemId', 'itemName', false, $('#'+lineId+' .orderItemSelect'));
+
+        `);
+
+
+        populateSelect(
+            '/v1/jewellery-items',
+            null,
+            'itemId',
+            'itemName',
+            false,
+            $('#'+lineId+' .orderItemSelect')
+        );
+
     }
+
 
     function placeOrder(){
+
         const items = [];
+
+
         $('#orderLines .row').each(function(){
-            const itemId = $(this).find('.orderItemSelect').val();
-            const qty = parseInt($(this).find('.orderQty').val());
-            if(itemId && qty > 0) items.push({ itemId: itemId, quantity: qty });
+
+            const itemId =
+                $(this)
+                    .find('.orderItemSelect')
+                    .val();
+
+
+            const qty =
+                parseInt(
+                    $(this)
+                        .find('.orderQty')
+                        .val()
+                );
+
+
+            if(
+                itemId &&
+                qty > 0
+            ){
+
+                items.push({
+                    itemId:itemId,
+                    quantity:qty
+                });
+
+            }
+
         });
-        if(items.length === 0){ $('#orderMsg').removeClass('ok').addClass('err').text("Add at least one item line"); return; }
+
+
+        if(items.length === 0){
+
+            $('#orderMsg')
+                .removeClass('ok')
+                .addClass('err')
+                .text(
+                    "Add at least one item line"
+                );
+
+            return;
+
+        }
+
 
         $.ajax({
-            url: API+"/v1/orders", type:"POST", contentType:"application/json",
-            data: JSON.stringify({ items: items }), headers: authHeaders(),
-            success: function(res){
-                $('#orderMsg').removeClass(res.status===0?'err':'ok').addClass(res.status===0?'ok':'err').text(res.message);
-                $('#orderLines').html(''); orderLineCount = 0;
+
+            url:
+                API+
+                "/v1/orders",
+
+            type:"POST",
+
+            contentType:
+                "application/json",
+
+            data:
+                JSON.stringify({
+                    items:items
+                }),
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
+                $('#orderMsg')
+                    .removeClass(
+                        res.status===0 ?
+                            'err' :
+                            'ok'
+                    )
+                    .addClass(
+                        res.status===0 ?
+                            'ok' :
+                            'err'
+                    )
+                    .text(res.message);
+
+
+                $('#orderLines').html('');
+
+                orderLineCount = 0;
+
                 loadOrders();
+
             },
-            error: function(){ $('#orderMsg').removeClass('ok').addClass('err').text("Order failed"); }
+
+
+            error:function(){
+
+                $('#orderMsg')
+                    .removeClass('ok')
+                    .addClass('err')
+                    .text("Order failed");
+
+            }
+
         });
+
     }
+
 
     function loadOrders(){
-        const role = getRole();
-        const url = (role === 'ADMIN' || role === 'STAFF') ? "/v1/orders" : "/v1/orders/customer/"+getCustomerId();
+
+        const role =
+            getRole();
+
+
+        const url =
+            (
+                role === 'ADMIN' ||
+                role === 'STAFF'
+            )
+                ?
+                "/v1/orders"
+                :
+                "/v1/orders/customer/"+
+                getCustomerId();
+
+
         $.ajax({
-            url: API+url, type:"GET", headers: authHeaders(),
-            success: function(res){
+
+            url:
+                API+
+                url,
+
+            type:"GET",
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
                 let html = "";
-                (res.body || []).forEach(o => {
-                    let actions = "";
-                    if(role === 'ADMIN' || role === 'STAFF'){
-                        actions = `<select onchange="updateOrderStatus(${o.orderId}, this.value)">
-                        <option value="PENDING" ${o.status==='PENDING'?'selected':''}>PENDING</option>
-                        <option value="CONFIRMED" ${o.status==='CONFIRMED'?'selected':''}>CONFIRMED</option>
-                        <option value="DELIVERED" ${o.status==='DELIVERED'?'selected':''}>DELIVERED</option>
-                        <option value="CANCELLED" ${o.status==='CANCELLED'?'selected':''}>CANCELLED</option>
-                    </select>`;
-                    }
-                    html += `<tr>
-                    <td>#${o.orderId}</td>
-                    <td>${o.customer ? o.customer.fullName : ''}</td>
-                    <td>${o.orderDate ? o.orderDate.replace('T',' ').substring(0,16) : ''}</td>
-                    <td>${o.status}</td>
-                    <td>${o.totalAmount.toFixed(2)}</td>
-                    <td>${actions}</td>
-                </tr>`;
-                });
+
+
+                (res.body || [])
+                    .forEach(o => {
+
+                        let actions = "";
+
+
+                        if(
+                            role === 'ADMIN' ||
+                            role === 'STAFF'
+                        ){
+
+                            actions = `
+
+                        <select
+                            onchange="updateOrderStatus(${o.orderId}, this.value)"
+                        >
+
+                            <option
+                                value="PENDING"
+                                ${o.status==='PENDING'?'selected':''}
+                            >
+                                PENDING
+                            </option>
+
+                            <option
+                                value="CONFIRMED"
+                                ${o.status==='CONFIRMED'?'selected':''}
+                            >
+                                CONFIRMED
+                            </option>
+
+                            <option
+                                value="DELIVERED"
+                                ${o.status==='DELIVERED'?'selected':''}
+                            >
+                                DELIVERED
+                            </option>
+
+                            <option
+                                value="CANCELLED"
+                                ${o.status==='CANCELLED'?'selected':''}
+                            >
+                                CANCELLED
+                            </option>
+
+                        </select>
+
+                        `;
+
+                        }
+
+
+                        html += `
+
+                    <tr>
+
+                        <td>
+                            #${o.orderId}
+                        </td>
+
+                        <td>
+                            ${o.customer ?
+                            o.customer.fullName :
+                            ''}
+                        </td>
+
+                        <td>
+                            ${
+                            o.orderDate
+                                ?
+                                o.orderDate
+                                    .replace('T',' ')
+                                    .substring(0,16)
+                                :
+                                ''
+                        }
+                        </td>
+
+                        <td>
+                            ${o.status}
+                        </td>
+
+                        <td>
+                            ${o.totalAmount.toFixed(2)}
+                        </td>
+
+                        <td>
+                            ${actions}
+                        </td>
+
+                    </tr>
+
+                    `;
+
+                    });
+
+
                 $('#orderTbl').html(html);
+
             }
+
         });
+
     }
 
-    function updateOrderStatus(orderId, status){
-        $.ajax({ url: API+"/v1/orders/"+orderId+"/status?status="+status, type:"PATCH", headers: authHeaders(), success: loadOrders });
+
+    function updateOrderStatus(
+        orderId,
+        status
+    ){
+
+        $.ajax({
+
+            url:
+                API+
+                "/v1/orders/"+
+                orderId+
+                "/status?status="+
+                status,
+
+            type:"PATCH",
+
+            headers:
+                authHeaders(),
+
+            success:
+            loadOrders
+
+        });
+
     }
+
 
     /* ---------------- shared helper ---------------- */
-    function populateSelect(url, selectId, idField, nameField, optional, $target){
+
+    function populateSelect(
+        url,
+        selectId,
+        idField,
+        nameField,
+        optional,
+        $target
+    ){
+
         $.ajax({
-            url: API+url, type:"GET", headers: authHeaders(),
-            success: function(res){
-                let html = optional ? '<option value="">-- none --</option>' : '<option value="">-- select --</option>';
-                (res.body || []).forEach(row => { html += `<option value="${row[idField]}">${row[nameField]}</option>`; });
-                if($target){ $target.html(html); } else { $('#'+selectId).html(html); }
+
+            url:
+                API+
+                url,
+
+            type:"GET",
+
+            headers:
+                authHeaders(),
+
+            success:function(res){
+
+                let html =
+                    optional
+                        ?
+                        '<option value="">-- none --</option>'
+                        :
+                        '<option value="">-- select --</option>';
+
+
+                (res.body || [])
+                    .forEach(row => {
+
+                        html += `
+                    <option
+                        value="${row[idField]}"
+                    >
+                        ${row[nameField]}
+                    </option>
+                    `;
+
+                    });
+
+
+                if($target){
+
+                    $target.html(html);
+
+                }
+
+                else{
+
+                    $('#'+selectId)
+                        .html(html);
+
+                }
+
             }
+
         });
-    }
 
-    /* ---------------- init ---------------- */
-    $(function(){
-        applyRoleVisibility();
-        showTab('tab-dashboard');
-    });
-</script>
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-
-    /* ---------------- SMART JEWELLERY ASSISTANT ---------------- */
-
-    #smartAssistant{
-        position:fixed;
-        right:25px;
-        bottom:25px;
-        z-index:9999;
-    }
-
-    #chatButton{
-        width:58px;
-        height:58px;
-        border-radius:50%;
-        border:none;
-        background:linear-gradient(180deg,var(--gold-soft),var(--gold));
-        color:#241a04;
-        font-size:24px;
-        cursor:pointer;
-        box-shadow:0 4px 18px rgba(0,0,0,.5);
-    }
-
-    #chatButton:hover{
-        transform:scale(1.05);
-    }
-
-    #chatBox{
-        display:none;
-        width:350px;
-        height:470px;
-        background:var(--card);
-        border:1px solid var(--border);
-        border-radius:14px;
-        box-shadow:0 8px 35px rgba(0,0,0,.6);
-        overflow:hidden;
-        margin-bottom:12px;
-    }
-
-    .chatHeader{
-        background:var(--navy-2);
-        padding:15px;
-        color:var(--gold-soft);
-        font-weight:600;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
-
-    #chatMessages{
-        height:340px;
-        padding:12px;
-        overflow-y:auto;
-    }
-
-    .botMessage,
-    .userMessage{
-        padding:10px 12px;
-        border-radius:10px;
-        margin:8px 0;
-        font-size:13px;
-        line-height:1.5;
-        max-width:85%;
-    }
-
-    .botMessage{
-        background:var(--card-2);
-        color:var(--text);
-    }
-
-    .userMessage{
-        background:rgba(212,175,55,.2);
-        color:var(--gold-soft);
-        margin-left:auto;
-    }
-
-    .chatInput{
-        display:flex;
-        gap:6px;
-        padding:10px;
-        border-top:1px solid var(--border);
-    }
-
-    .chatInput input{
-        flex:1;
-    }
-
-    .chatInput button{
-        width:45px;
-        background:var(--gold);
-        color:#241a04;
-        border:none;
-        border-radius:7px;
-        cursor:pointer;
-        font-size:16px;
-    }
-
-    @media(max-width:500px){
-        #chatBox{
-            width:calc(100vw - 30px);
-            height:450px;
-        }
-
-        #smartAssistant{
-            right:15px;
-            bottom:15px;
-        }
     }
 
 
-
-
-</style>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
     /* ---------------- SMART JEWELLERY ASSISTANT ---------------- */
 
     function openChat(){
 
         $('#chatBox').show();
+
         $('#chatButton').hide();
 
         $('#chatInput').focus();
+
     }
 
 
     function closeChat(){
 
         $('#chatBox').hide();
+
         $('#chatButton').show();
 
     }
@@ -830,42 +3346,61 @@
     function addBotMessage(message){
 
         $('#chatMessages').append(
-            '<div class="botMessage">' + message + '</div>'
+            '<div class="botMessage">' +
+            message +
+            '</div>'
         );
+
 
         $('#chatMessages').scrollTop(
             $('#chatMessages')[0].scrollHeight
         );
+
     }
 
 
     function addUserMessage(message){
 
         $('#chatMessages').append(
-            '<div class="userMessage">' + message + '</div>'
+            '<div class="userMessage">' +
+            message +
+            '</div>'
         );
+
 
         $('#chatMessages').scrollTop(
             $('#chatMessages')[0].scrollHeight
         );
+
     }
 
 
     function sendMessage(){
 
-        const input = $('#chatInput');
+        const input =
+            $('#chatInput');
 
-        const message = input.val().trim();
+
+        const message =
+            input.val().trim();
+
 
         if(message === ''){
+
             return;
+
         }
+
 
         addUserMessage(message);
 
+
         input.val('');
 
-        const text = message.toLowerCase();
+
+        const text =
+            message.toLowerCase();
+
 
         let reply = '';
 
@@ -903,8 +3438,6 @@
         }
 
 
-
-
         else if(
             text.includes('red') ||
             text.includes('ruby')
@@ -919,8 +3452,6 @@
         }
 
 
-
-
         else if(
             text.includes('ring')
         ){
@@ -933,8 +3464,6 @@
         }
 
 
-
-
         else if(
             text.includes('necklace')
         ){
@@ -945,8 +3474,6 @@
                 'Check the Catalogue section for available items.';
 
         }
-
-
 
 
         else if(
@@ -962,7 +3489,6 @@
         }
 
 
-
         else if(
             text.includes('gem') ||
             text.includes('gemstone')
@@ -974,8 +3500,6 @@
                 'It contains gem code, type, color, origin, carat, shape and supplier.';
 
         }
-
-
 
 
         else if(
@@ -995,8 +3519,6 @@
         }
 
 
-
-
         else if(
             text.includes('order') ||
             text.includes('buy') ||
@@ -1010,8 +3532,6 @@
                 'then click Place Order.';
 
         }
-
-
 
 
         else if(
@@ -1033,7 +3553,6 @@
                 'Try asking me something!';
 
         }
-
 
 
         else{
@@ -1064,20 +3583,20 @@
 
         },500);
 
-    }   </script>
+    }
 
 
+    /* ---------------- init ---------------- */
 
+    $(function(){
 
+        applyRoleVisibility();
 
+        showTab('tab-dashboard');
 
+    });
 
+</script>
 
-
-
-
-
-
-
-
-
+</body>
+</html>
