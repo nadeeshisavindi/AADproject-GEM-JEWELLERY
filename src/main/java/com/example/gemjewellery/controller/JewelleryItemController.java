@@ -22,9 +22,14 @@ public class JewelleryItemController {
         return new CommonResponse(0, jewelleryItemRepository.findAll(), "Jewellery items");
     }
 
+
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getOne(@PathVariable Long id) {
-        }
+        JewelleryItem item = jewelleryItemRepository.findById(id)
+                .orElseThrow(() -> new AppException(404, "Jewellery item not found"));
+        return new CommonResponse(0, item, "Jewellery item");
+    }
+
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse create(@RequestBody JewelleryItem item) {
