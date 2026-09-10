@@ -174,9 +174,14 @@
 
                 if(res.body.role === 'CUSTOMER'){
                     $.ajax({
-
+                        url: API+"/v1/customers/me", type:"GET", headers: authHeaders(),
+                        success: function(cres){
+                            if(cres.status === 0) localStorage.setItem("customerId", cres.body.customerId);
+                            window.location.href = "index.html";
+                        },
+                        error: function(){ window.location.href = "index.html"; }
+                    });
                 }
-
     }
 </script>
 </body>
