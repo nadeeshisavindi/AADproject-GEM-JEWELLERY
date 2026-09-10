@@ -46,4 +46,6 @@ public class ReferenceDataController {
     @GetMapping(value = "/v1/gem-colors", produces = MediaType.APPLICATION_JSON_VALUE)
    }
 
+    @PostMapping(value = "/v1/gem-colors", produces = MediaType.APPLICATION_JSON_VALUE)
+    }
 }
