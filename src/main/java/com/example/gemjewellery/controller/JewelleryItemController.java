@@ -21,4 +21,8 @@ public class JewelleryItemController {
     public CommonResponse getAll() {
          }
 
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse getOne(@PathVariable Long id) {
+        }
+
 }
