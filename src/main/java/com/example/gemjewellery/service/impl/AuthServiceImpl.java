@@ -38,9 +38,48 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void registerCustomer(RegisterDTO dto) {
+        User user = createUserAccount(dto, UserRole.CUSTOMER);
 
         Customer customer = new Customer();
-      }
+        customer.setUser(user);
+        customer.setFullName(dto.getFullName());
+        customer.setEmail(dto.getEmail());
+        customer.setPhone(dto.getPhone());
+        customer.setAddress(dto.getAddress());
+        customerRepository.save(customer);
 
+        log.info("New customer registered: {}", dto.getUsername());
+    }
 
+    @Override
+    public void registerStaff(RegisterDTO dto) {
+        UserRole role;
+        try {
+            role = UserRole.valueOf(dto.getRoleName().toUpperCase());
+        } catch (Exception ex) {
+            throw new AppException(400, "roleName must be ADMIN or STAFF");
+        }
+        if (role == UserRole.CUSTOMER) {
+            throw new AppException(400, "Use /register-customer for customer accounts");
+        }
+        createUserAccount(dto, role);
+        log.info("New {} account registered: {}", role, dto.getUsername());
+    }
+
+    private User createUserAccount(RegisterDTO dto, UserRole roleName) {
+        if (userRepository.existsByUsername(dto.getUsername())) {
+            throw new AppException(409, "Username already taken");
+        }
+        Role role = roleRepository.findAll().stream()
+                .filter(r -> r.getRoleName() == roleName)
+                .findFirst()
+                .orElseThrow(() -> new AppException(500, "Role not seeded: " + roleName));
+
+        User user = new User();
+        user.setUsername(dto.getUsername());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setRole(role);
+        user.setEnabled(true);
+        return userRepository.save(user);
+    }
 }
