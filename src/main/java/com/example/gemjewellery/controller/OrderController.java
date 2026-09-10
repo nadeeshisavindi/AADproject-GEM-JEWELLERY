@@ -33,6 +33,8 @@ public class OrderController {
 
     @GetMapping(value = "/customer/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse getForCustomer(@PathVariable Long customerId) {
+        return new CommonResponse(0, orderService.getOrdersForCustomer(customerId), "Customer orders");
+    }
 
 
     @PatchMapping(value = "/{orderId}/status", produces = MediaType.APPLICATION_JSON_VALUE)
