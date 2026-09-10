@@ -37,6 +37,7 @@ public class JwtUtil {
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -50,9 +51,6 @@ public class JwtUtil {
         return claimsResolver.apply(claims);
     }
 
-    public boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
-    }
+    private Claims extractAllClaims(String token) {
 
-    }
 }
