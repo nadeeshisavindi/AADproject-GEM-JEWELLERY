@@ -23,6 +23,8 @@ public class ReferenceDataController {
 
     private final GemTypeRepository gemTypeRepository;
     private final GemColorRepository gemColorRepository;
+    private final GemOriginRepository gemOriginRepository;
+    private final SupplierRepository supplierRepository;
 
 
 }
