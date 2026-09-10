@@ -17,11 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * Gemstones plus their three "detail" tables: certificate, valuation and
- * inventory. Kept in one controller since they are all part of the same
- * screen in the frontend (view/edit a gemstone).
- */
+
 @RestController
 @RequestMapping("/v1/gemstones")
 @CrossOrigin
@@ -48,6 +44,11 @@ public class GemstoneController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse create(@RequestBody Gemstone gemstone) {
+        if (gemstoneRepository.existsByGemCode(gemstone.getGemCode())) {
+            throw new AppException(409, "A gemstone with this code already exists");
+        }
+        return new CommonResponse(0, gemstoneRepository.save(gemstone), "Gemstone saved");
+    }
         }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -60,21 +61,21 @@ public class GemstoneController {
         return new CommonResponse(0, "Gemstone deleted");
     }
 
-    // ---- Certificate (1-1 with gemstone) ----
+
     @PostMapping(value = "/certificate", produces = MediaType.APPLICATION_JSON_VALUE)
     }
 
     @GetMapping(value = "/certificates", produces = MediaType.APPLICATION_JSON_VALUE)
    }
 
-    // ---- Valuation (many per gemstone, latest = current market value) ----
+
     @PostMapping(value = "/valuation", produces = MediaType.APPLICATION_JSON_VALUE)
     }
 
     @GetMapping(value = "/valuations", produces = MediaType.APPLICATION_JSON_VALUE)
     }
 
-    // ---- Inventory (1-1 with gemstone, stock on hand) ----
+
     @PostMapping(value = "/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
    }
 
