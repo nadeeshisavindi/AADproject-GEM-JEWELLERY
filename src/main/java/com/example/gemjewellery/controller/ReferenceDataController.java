@@ -24,6 +24,7 @@ public class ReferenceDataController {
     private final GemTypeRepository gemTypeRepository;
     private final GemColorRepository gemColorRepository;
     private final GemOriginRepository gemOriginRepository;
+    private final JewelleryCategoryRepository categoryRepository;
     private final SupplierRepository supplierRepository;
 
 
