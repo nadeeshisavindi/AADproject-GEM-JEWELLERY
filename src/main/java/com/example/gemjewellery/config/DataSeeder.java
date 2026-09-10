@@ -4,6 +4,7 @@ import com.example.gemjewellery.entity.Customer;
 import com.example.gemjewellery.entity.Role;
 import com.example.gemjewellery.entity.User;
 
+import com.example.gemjewellery.enumiration.UserRole;
 import com.example.gemjewellery.repository.CustomerRepository;
 import com.example.gemjewellery.repository.RoleRepository;
 import com.example.gemjewellery.repository.UserRepository;

@@ -166,6 +166,12 @@
         });
         $.ajax({
             url: API+"/v1/auth/login", type:"POST", contentType:"application/json", data: obj,
+            success: function(res){
+                if(res.status !== 0){ $('#loginMsg').removeClass('ok').addClass('err').text(res.message); return; }
+                localStorage.setItem("JWT", res.body.token);
+                localStorage.setItem("role", res.body.role);
+                localStorage.setItem("username", res.body.username);
+
 
     }
 </script>
