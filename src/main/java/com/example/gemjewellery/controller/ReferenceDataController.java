@@ -48,4 +48,35 @@ public class ReferenceDataController {
 
     @PostMapping(value = "/v1/gem-colors", produces = MediaType.APPLICATION_JSON_VALUE)
     }
+
+    @DeleteMapping(value = "/v1/gem-colors/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse deleteGemColor(@PathVariable Long id) {
+      }
+
+
+    @GetMapping(value = "/v1/gem-origins", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse getGemOrigins() {
+    }
+
+    @PostMapping(value = "/v1/gem-origins", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse addGemOrigin(@RequestBody GemOrigin gemOrigin) {
+    }
+
+    @DeleteMapping(value = "/v1/gem-origins/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse deleteGemOrigin(@PathVariable Long id) {
+
+
+    @GetMapping(value = "/v1/categories", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse getCategories() {
+        return new CommonResponse(0, categoryRepository.findAll(), "Jewellery categories");
+    }
+
+    @PostMapping(value = "/v1/categories", produces = MediaType.APPLICATION_JSON_VALUE)
+   }
+
+    @DeleteMapping(value = "/v1/categories/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CommonResponse deleteCategory(@PathVariable Long id) {
+         }
+
+
 }
