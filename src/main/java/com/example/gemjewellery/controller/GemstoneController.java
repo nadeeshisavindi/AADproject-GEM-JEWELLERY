@@ -53,7 +53,11 @@ public class GemstoneController {
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse update(@RequestBody Gemstone gemstone) {
-       }
+        if (!gemstoneRepository.existsById(gemstone.getGemstoneId())) {
+            throw new AppException(404, "Gemstone not found");
+        }
+        return new CommonResponse(0, gemstoneRepository.save(gemstone), "Gemstone updated");
+    }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CommonResponse delete(@PathVariable Long id) {
