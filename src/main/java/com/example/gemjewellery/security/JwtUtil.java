@@ -37,7 +37,6 @@ public class JwtUtil {
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
-
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -50,7 +49,12 @@ public class JwtUtil {
         Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
-
     private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(getSignKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
 
-}
+    }
