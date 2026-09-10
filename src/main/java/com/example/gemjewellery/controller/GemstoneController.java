@@ -17,11 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * Gemstones plus their three "detail" tables: certificate, valuation and
- * inventory. Kept in one controller since they are all part of the same
- * screen in the frontend (view/edit a gemstone).
- */
+
 @RestController
 @RequestMapping("/v1/gemstones")
 @CrossOrigin
